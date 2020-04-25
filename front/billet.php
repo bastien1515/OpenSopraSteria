@@ -26,6 +26,7 @@ class PDF extends FPDF {
     $this->Cell(180,8,'Open Sopra Steria',0,1,'C',0);
     $this->Image('../images/filetdetennis.jpeg',0,150,210);
     $this->Image('../images/balletennis.jpeg',195,2,-500);
+    $this->Image('../images/codebarre.png',175,272,-945);
     // Saut de ligne 10 mm
     $this->Ln(10);
   }
