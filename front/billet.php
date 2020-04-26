@@ -27,6 +27,7 @@ class PDF extends FPDF {
     $this->Image('../images/filetdetennis.jpeg',0,150,210);
     $this->Image('../images/balletennis.jpeg',195,2,-500);
     $this->Image('../images/codebarre.png',175,272,-945);
+    $this->Image('../images/QRCode_0.png',155,280,-5000);
     // Saut de ligne 10 mm
     $this->Ln(10);
   }
