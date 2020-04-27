@@ -4,7 +4,7 @@
     <head>
         <title>Open Sopra Steria | Connexion </title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="design.css"/>
+        <link rel="stylesheet" href="../css/design.css"/>
     </head>
 
     <body>
@@ -13,10 +13,10 @@
           <nav>
           <ul id = "menu"><!-- menu de navigation du site -->
              <li><img src="logosopra.png" width="70%" height="70%"> </li>
-              <li><a href = "#"> Actualités </a> </li>
-              <li> <a href = "#">  Billeterie </a></li>
-              <li> <a href="#">Planning Match</a></li>
-              <li> <a href="#">Résultats</a></li>
+              <li><a href = "accueil.php"> Actualités </a> </li>
+              <li> <a href = "billeterie.php">  Billeterie </a></li>
+              <li> <a href="planningfront.php">Planning Match</a></li>
+              <li> <a href="planningfront.php">Résultats</a></li>
               <a href = "seconnecter.php"><button class="favorite styled" type="button"> Se Connecter </button></a>
               <a href = "sinscrire.php"><button class="favorite styled" type="button"> S'Inscrire </button></a>
              </ul></nav></div>
@@ -50,34 +50,34 @@
 
                             <!--Si tout est bon, faire lien vers l'espace client-->
                         </form>
-                        
-                        <?php
-                        include_once("ClasseConnexion.php");  
 
-                         
+                        <?php
+                        include_once("ClasseConnexion.php");
+
+
                             try {
                                 $maConnexionBD = new Connection(); //nouvel objet connexion
-                               
+
                             	if(isset($_POST['co']))
                             	{
                             		$login = $_REQUEST['login'];
                             		$pass = $_REQUEST['pass'];
-                            		
-                            	   	$maConnexionBD->connexion($login,$pass); 
 
-                            		
+                            	   	$maConnexionBD->connexion($login,$pass);
+
+
                             	}
                             	else {
                             	    $_POST['co'] = NULL;
                             	}
                             }
                             catch (Exception $e) {
-                            
+
                             }
-                                
-                            
+
+
                         ?>
-                        
+
                         </center>
                     </div>
                 </div>

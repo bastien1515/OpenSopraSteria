@@ -42,13 +42,28 @@ class Connection
                        $sql = 'SELECT idclient,mailclient FROM `client` WHERE mailclient = :mail';
                        $req = $this->_bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
                        $req ->execute(array(':mail' => $mail));
+                       $tab = $req->fetchall();
                        while ($donnees = $req->fetch())
                        {
                            $_SESSION['idclient']=$donnees['idclient'];
                        } // on stocke l'id du client.
 
-                       echo ' <body onLoad="alert(\'Bienvenue! \')">   ';
-                       echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+                       //Distinction admin/client
+                       $admin = false;
+                       foreach ($tab as $key => $value){
+                         if($value["mailclient"]=="admin") {
+                             $admin=true;
+                         }
+                       }
+
+                       if($admin==true){
+                         echo ' <body onLoad="alert(\'Menu Admin \')">   ';
+                         echo '<meta http-equiv="refresh" content="0;URL=menuadmin.php">';
+                       }
+                       else{
+                         echo ' <body onLoad="alert(\'Bienvenue! \')">   ';
+                         echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+                       }
 
                     }else{
                       echo '<body onLoad="alert(\'Mot de passe incorrect!\')">';
@@ -81,12 +96,25 @@ class Connection
 	}
 
 	public function disconnect(){
-
+      $_SESSION = array();
 	    session_destroy();
 	    $this->_bdd =null;
 	    die();
 
 	}
+
+
+  public function isAdmin($mail){
+
+    $res = false;
+
+    if ($mail=='admin'){
+      $res = true;
+    }
+
+    return $res;
+
+  }
 
 
 	/* ancienne fonction aout billet

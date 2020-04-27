@@ -24,17 +24,39 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
 
     </script>
 
-      <div class = "block3">
-          <nav>
-          <ul id = "menu"><!-- menu de navigation du site -->
-             <li><img src="logosopra.png" width="70%" height="70%"> </li>
-              <li><a href = "#"> Actualités </a> </li>
-              <li> <a href = "#">  Billeterie </a></li>
-              <li> <a href="#">Planning Match</a></li>
-              <li> <a href="#">Résultats</a></li>
-             <a href = "seconnecter.php"><button class="favorite styled" type="button"> Se Connecter </button></a>
-             <a href = "sinscrire.php"><button class="favorite styled" type="button"> S'Inscrire </button></a>
-             </ul></nav></div>
+    <?php
+    if(isset($_SESSION['mail'])){
+      if($_SESSION['mail']=='admin'){
+        echo '<div class = "block3">
+            <nav>
+            <ul id = "menu"><!-- menu de navigation du site -->
+               <li><img src="logosopra.png" width="70%" height="70%"> </li>
+                <li><a href = "joueur.php"> Adminstration des joueurs </a> </li>
+                <li> <a href = "planning1.php"> Administration des matchs </a></li>
+                <li> <a href="admin.php">  Administration de la billeterie </a></li>
+                <li> <a href="score.php"> Administration des scores </a></li>';
+
+         echo '<form action="" method="post">';
+         echo '<input class="favorite styled" type="submit" name="deco" value="Se deconnecter">';
+         echo '</form>';
+        if(isset($_POST['deco']))
+        {
+            $maConnexionBD->disconnect();
+            echo '<body onLoad="alert(\'Déconnexion...\')">';
+            echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+        }
+        echo '</ul></nav></div>';
+      }
+      else{
+       echo '<body onLoad="alert(\' Acces refusé \')">';
+       echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+      }
+    }
+    else{
+      echo '<body onLoad="alert(\' Acces refusé \')">';
+      echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+    }
+    ?>
 
              <div class = "container">
                  <div class = "bloc1">

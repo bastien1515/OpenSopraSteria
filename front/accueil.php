@@ -1,12 +1,10 @@
-<?php session_start(); ?>
+<?php session_start();
+include_once("ClasseConnexion.php");
+$co = new Connection();?>
 <!doctype HMTL>
 <html >
 
-<!--?php //Test de session
-    if (isset($_SESSION['mail'])){
-        echo $_SESSION['mail'];
-    }
-?-->
+
     <head>
         <title>OPEN SOPRA STERIA </title>
         <meta charset="utf-8">
@@ -31,13 +29,13 @@
              <nav>
              <ul id = "menu"><!-- menu de navigation du site -->
                 <li><img src="../images/logosopra.png" width="70%" height="70%"> </li>
-                 <li><a href = "#"> Actualités </a> </li>
-                 <li> <a href = "#">  Billeterie </a></li>
-                 <li> <a href="#">Planning Match</a></li>
-                 <li> <a href="#">Résultats</a></li>
+                 <li><a href = "accueil.php"> Actualités </a> </li>
+                 <li> <a href = "billeterie.php">  Billeterie </a></li>
+                 <li> <a href="planningfront.php">Planning Match</a></li>
+                 <li> <a href="planningfront.php">Résultats</a></li>
 
-                 <?php
 
+                <?php
                 if(isset($_SESSION['mail'])){
                     //echo '<a href = "moncompte.php"><button class="favorite styled" type="button"> Billeterie </button></a></input>';
                     echo '<form action="" method="post">';
@@ -46,21 +44,20 @@
                     	if(isset($_POST['deco']))
                     	{
 
-                    		 include_once("ClasseConnexion.php");
-                    		 $co = new Connection();
+
                              $co->disconnect();
 
                     	}
                 }
                 else{
-                    echo '<a href = "seconnecter.php"><button class="favorite styled" type="button"> Se Connecter </button></a></input>';
-                    echo '<a href = "sinscrire.php"><button class="favorite styled" type="button"> S&apos;Inscrire </button></a></input>';
+                    echo '<a href = "seconnecter.php"><button class="favorite styled" type="button"> Se Connecter </button></a>';
+                    echo '<a href = "sinscrire.php"><button class="favorite styled" type="button"> S&apos;Inscrire </button></a>';
                 }
                 ?>
+              </ul></nav></div>
 
 
-
-                </ul></nav></div>
+                </div>
 
 
              <div class = "block4">
