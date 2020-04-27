@@ -10,6 +10,12 @@
                  element.style.display='block';
              }
 
+             if (libelletbillet === 'journéeSolidaritée'){
+                 var element= document.getElementById('promo');
+                 element.style.display='block';
+             }
+
+
 
              if (libelletbillet === 'licencie' ){
                  var element= document.getElementById('licencie');

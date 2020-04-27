@@ -241,7 +241,6 @@ BEGIN
     UPDATE ventes
     SET nbventes = nbventes+1
     WHERE idventes =1;
-
 END |
 
 
@@ -256,10 +255,9 @@ CREATE TRIGGER suppr_match before UPDATE
 ON commande FOR EACH ROW
 BEGIN
 	 DECLARE id int;
-     SET id =(select idmatch from _match where EXISTS (select idmatch from billet where quantite=0));
-     UPDATE _match SET inactif = 1 where idmatch= id;
-
-     update `_match` set inactif= 1 where dateMatch < CURRENT_TIMESTAMP;
+     SET id =(SELECT idmatch from _match WHERE EXISTS (SELECT idmatch FROM billet WHERE quantite=0));
+     UPDATE _match SET inactif = 1 WHERE idmatch= id;
+     UPDATE _match SET inactif= 1 WHERE dateMatch < CURRENT_TIMESTAMP;
 
 END |
 
@@ -277,23 +275,6 @@ BEGIN
 END |
 */
 
-
-
--- procédure x.
--- Fonctionne que sur une ligne
-
-DELIMITER |
-CREATE PROCEDURE enregistrer_numlicencie()
-BEGIN
-  DECLARE id int DEFAULT 0;
-  set id=(select client.idclient from commande inner join client
-  on commande.idclient = client.IDCLIENT
-  inner join tbillet on commande.idtbillet = tbillet.idtbillet
-  where tbillet.libelletbillet ='licencie');
-
-	UPDATE client SET ESTLICENCIE="1" WHERE idclient=id;
-END;
-| DELIMITER
 
 
 
@@ -323,17 +304,31 @@ INSERT INTO `equiper` (`equipeRamasseurs`, `libelleEquipeR`) VALUES (NULL, 'etud
 INSERT INTO `ramasseurs` (`idRamasseur`, `nomRamasseur`, `prenomRamasseur`, `equipeRamasseurs`) VALUES (NULL, 'Magic', 'Jhonson', '1');
 INSERT INTO `ramasseurs` (`idRamasseur`, `nomRamasseur`, `prenomRamasseur`, `equipeRamasseurs`) VALUES (NULL, 'Kobe', 'Bryan', '1');
 
-INSERT INTO `_match` (`idmatch`, `libelleMatch`, `dateMatch`, `coeffMatch`, `courtMatch`, `creneauMatch`, `typeMatch`, `tournoi`,
-`equipeA`, `equipeR1`, `equipeR2`, `inactif`) VALUES (NULL, 'Match 1', '2020-06-25', '1.1', 'Central', '15h ', 'Qualif', 'Open', '1', '1', '2', 0);
+INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Cazelly', 'Aurore', '2019-04-17', 'Francais', '150');
+INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Busquet', 'Salomé', '2019-04-17', 'Francais', '150');
+
+INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Quemar', 'Martin', '2019-04-17', 'Francais', '150');
+INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Anginieur', 'Bastien', '2019-04-17', 'Francais', '150');
+
+INSERT INTO `_match` (`idmatch`, `libelleMatch`, `dateMatch`, `coeffMatch`, `courtMatch`, `creneauMatch`, `typeMatch`, `tournoi`, `equipeA`, `equipeR1`, `equipeR2`, `joueurA1`, `joueurA2`, `joueurB1`, `joueurB2`, `inactif`, `estjoue`)
+VALUES (NULL, 'Match1', '2020-07-23', '1', 'Central', '14h', 'double', 'Open', '1', '1', '2', '1', '2', '3', '4', '0', '0');
+
+
+-- création match simple
+INSERT INTO `_match` (`idmatch`, `libelleMatch`, `dateMatch`, `coeffMatch`, `courtMatch`, `creneauMatch`, `typeMatch`, `tournoi`, `equipeA`, `equipeR1`, `equipeR2`, `joueurA1`, `joueurA2`, `joueurB1`, `joueurB2`, `inactif`, `estjoue`)
+VALUES (NULL, 'Match1', '2020-07-24', '1.2', 'Central', '14h', 'simple', 'Open', '1', '1', '2', '1', null, '2', null, '0', '0');
+
 
 INSERT INTO `_match` (`idmatch`, `libelleMatch`, `dateMatch`, `coeffMatch`, `courtMatch`, `creneauMatch`, `typeMatch`, `tournoi`,
-`equipeA`, `equipeR1`, `equipeR2`, `inactif`) VALUES (NULL, 'Match 2', '2020-06-26', '1.2', 'Central', '15h ', 'Qualif', 'Open', '1', '1', '2', 0);
+`equipeA`, `equipeR1`, `equipeR2`, `inactif`)
+VALUES (NULL, 'Match2', '2020-07-24', '1.1', 'Central', '14h', 'double', 'Open', '1', '1', '2', '1', '2', '2', '4', '0', '0');
 
 INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '50', 'promo');
 INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'licencie');
 INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'grand public');
-INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'journée solidaritée');
+INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'journéeSolidarité');
 INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'the big match');
+
 INSERT INTO `emplacement` (`idemplacement`, `libelleemplacement`, `coeffemplacement`) VALUES (NULL, 'Tribune', '0.95');
 INSERT INTO `promo` (`idpromo`, `libellepromo`, `coeffpromo`, `idtbillet`) VALUES (NULL, 'Etudiant', '0.9', '2');
 INSERT INTO `licence` (`idlicence`, `numlicencie`) VALUES (NULL, '10');
@@ -370,3 +365,35 @@ CREATE PROCEDURE enr()
   END LOOP;
   CLOSE curseur;
 END;
+
+
+
+-- comptabilise le nombre de billets restants pour un match donné
+
+DELIMITER |
+CREATE PROCEDURE billets_restants(IN idm INT, OUT qtotale INT)
+BEGIN
+  DECLARE quantite INT;
+  DECLARE qtotale INT DEFAULT 0;
+  DECLARE done INT DEFAULT FALSE;
+  DECLARE curseur CURSOR
+  FOR select billet.quantite from billet where billet.idmatch=idm;
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+  OPEN curseur;
+  myloop: LOOP
+  	FETCH curseur INTO quantite;
+    IF done THEN
+    	LEAVE myloop;
+    END IF;
+    SET qtotale = qtotale +quantite;
+  END LOOP;
+  CLOSE curseur;
+	select qtotale;
+END;
+
+-- pour appeler la procédure:
+--  CALL billets_restants(4,@qtotale);
+
+-- Pour des raisons d’équité, un même arbitre de chaise ne doit pas juger plus de
+--  4 matchs sur la durée du tournoi (2 en Simples et 2 en Double).
