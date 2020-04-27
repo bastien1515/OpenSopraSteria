@@ -59,7 +59,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
 
 
                                  $ajoutprixtotal = $_SESSION['prixtbillet']*$_SESSION['coefmatch']*$_SESSION['coeffemplacement'];
-                                 if ($_SESSION['libelletbillet']=='promo'){
+                                 if ($_SESSION['libelletbillet']=='promo' or $_SESSION['libelletbillet']=='solidarité'){
                                      $totalpromo =$_SESSION['prixtbillet']*$_SESSION['coeffpromo'];
 
                                  $prixtotal = $_SESSION['prixtbillet']+$ajoutprixtotal-$totalpromo;
@@ -87,7 +87,6 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
 
                                   <?php
                                       $montant = $_SESSION['prixtotal'];
-
                                       $idclient= $_SESSION['idclient'];
                                       $idemplacement=$_SESSION['idemplacement'];
                                       $idpromo=$_SESSION['idpromo'];
