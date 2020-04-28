@@ -397,3 +397,13 @@ END;
 
 -- Pour des raisons d’équité, un même arbitre de chaise ne doit pas juger plus de
 --  4 matchs sur la durée du tournoi (2 en Simples et 2 en Double).
+
+
+create or replace VIEW matchs_terminés
+as
+SELECT `idmatch`,`dateMatch`,`libelleMatch`,`creneauMatch`,`tournoi` FROM `_match` WHERE `estjoue`=1 ORDER BY `datematch`;
+
+create or  replace VIEW Matchs
+  as
+SELECT `idmatch`,`dateMatch`,`libelleMatch`,`creneauMatch`
+FROM `_match`
