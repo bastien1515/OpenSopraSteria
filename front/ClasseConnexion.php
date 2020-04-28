@@ -417,10 +417,27 @@ public function getlibellematch($idmatch){
      //INNER JOIN `billet` ON `billet`.`libellematch` = `_match`.`libellematch` ;
        $req = $this->_bdd->prepare($sql);
        $req->execute();
-       $resultat = $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+       $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+
        return $resultat;
 
       }
+
+      public function quantiteBillets($idMatch) {
+
+          $sql = 'SELECT sum(quantite) from billet where idmatch= :id';
+
+          //$sql = 'CALL billets_restants(:id,@qtotale)';
+
+        $req = $this->_bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
+        $req->execute(array(':id' => $idMatch));
+
+       $resultat = $req->fetch();
+
+         echo $resultat[0];
+
+        }
 
 public function verifpromo2($libellepromo)
     {
