@@ -1,160 +1,97 @@
 <?php session_start();
 include_once("ClasseConnexion.php");
-$maConnexionBD = new Connection(); // nouvelle connection BD
-?>
-<!DOCTYPE html>
-<html>
+$maConnexionBD = new Connection();?>
+<!doctype HMTL>
+
+<html >
+
     <head>
-        <title>Open Sopra Steria | Planning </title>
+        <title>OPEN SOPRA STERIA | Planning Matchs</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/design.css"/>
+        <link rel="stylesheet" href="../css/design.css">
     </head>
 
     <body>
 
-      <div class = "block3">
-          <nav>
-          <ul id = "menu"><!-- menu de navigation du site -->
-             <li><img src="logosopra.png" width="70%" height="70%"> </li>
-              <li><a href = "accueil.php"> Actualités </a> </li>
-              <li> <a href = "billeterie.php">  Billeterie </a></li>
-              <li> <a href="planningfront.php">Planning Match</a></li>
-              <li> <a href="planningfront.php">Résultats</a></li>
-              <?php
-              if(isset($_SESSION['mail'])){
-                  //echo '<a href = "moncompte.php"><button class="favorite styled" type="button"> Billeterie </button></a></input>';
-                  echo '<form action="" method="post">';
-                  echo '<input class="favorite styled" type="submit" name="deco" value="Se deconnecter">';
-                  echo '</form>';
-                    if(isset($_POST['deco']))
-                    {
-                           $maConnexionBD->disconnect();
-                    }
-              }
-              else{
-                  echo '<a href = "seconnecter.php"><button class="favorite styled" type="button"> Se Connecter </button></a>';
-                  echo '<a href = "sinscrire.php"><button class="favorite styled" type="button"> S&apos;Inscrire </button></a>';
-              }
-              ?>
-            </ul></nav></div>
+<!--menu-->
+<ul class="menu">
+  <img src="../images/logosopra.png" width="5%" height="10%">
+  <li><a href="accueil.php" data-hover="Accueil">Accueil</a></li>
+  <li><a href="actualites.php" data-hover="Actualités">Actualités</a></li>
+  <li><a href="resultats.php" data-hover="Résultats">Résultats</a></li>
+  <li><a href="planningfront.php" data-hover="Planning">Planning Matchs</a></li>
+  <li><a href="billetterie.php" data-hover="Billetterie">Billetterie</a></li>
 
-             <div class = "container">
-                 <div class = "bloc1">
+  <?php
+  if(isset($_SESSION['mail'])){
+      echo '<form action="" method="post">';
+      echo '<input class="bouton" type="submit" name="deco" value="Se Déconnecter">';
+      echo '</form>';
+        if(isset($_POST['deco']))
+        {
+               $maConnexionBD->disconnect();
+        }
+  }
+  else{
+      echo '<a href = "seconnecter.php"><button class="bouton" type="button"> Se Connecter </button></a>';
+      echo '<a href = "sinscrire.php"><button class="bouton" type="button"> S&apos;Inscrire </button></a>';
+  }
+  ?>
 
-                 </div>
+</ul>
+<!--Fin du menu-->
+
+<!--Image d'accueil-->
+<div class="accueil">
+  <img class="photo1" src="../images/terrebattue.jpg">
+  <div class="texte">
+    Planning des matchs à venir
+</div>
+</div>
+<!--Fin Image accueil-->
 
 
-              <div class = "container">
-                 <div class = "bloc2">
+<!--Page-->
 
-                 </div>
+<div class ="formulaire">
 
-                 <div class = "bloc3">
-                     <div class = "titres">
-                         <h2  class = "texteaccueil" align="center">Matchs joués</h2>
-                     </div>
-                    <br><br>
-                    <?php
-                       $tabM= $maConnexionBD->getmatchsjoues();
-                       if (empty($tabM)==FALSE){
-                         foreach ($tabM as $keyM => $valueM) {
-                             echo '<center><fieldset>';
-                             echo 'Date : '.$valueM['dateMatch'].', ';
-                             echo  $valueM['creneauMatch'].'. Match : ';
-                             echo  $valueM['libelleMatch'].'<br/><br/>';
+  <?php
+   echo '<table border="2px" cellspacing="5" cellpadding="5" align="center">
+   <tr>
+   <td id="entete" align="center">Date</td>
+   <td id="entete" align="center">Affiche</td>
+   <td id="entete" align="center">Créneau</td>
+   </tr>';
+   $tab= $maConnexionBD->getmatchsavenir();
+   if(empty($tab)==FALSE){
+     foreach ($tab as $key => $value) {
+         echo '<fieldset>';
+         echo '<tr><td id="contenu" align="center">'.$value['dateMatch'].'</td>';
+         echo '<td id="contenu" align="center">'.$value['libelleMatch'].'</td>';
+         echo '<td id="contenu" align="center">'.$value['creneauMatch'].'</td>';
+         echo '</tr></fieldset>';
+      }
+   }
+   echo '</table>';
+  ?>
 
-                             $idmatch = $valueM['idmatch'];
-                             $scoreA = $maConnexionBD->getscoreA($idmatch);
-                             $scoreB = $maConnexionBD->getscoreB($idmatch);
+</div>
+<!-- Fin Page-->
 
-                             if($valueM['tournoi']=='Tournoi double'){
 
-                              $tabA = $maConnexionBD->getEquipeA($idmatch);
-                              $tabB = $maConnexionBD->getEquipeB($idmatch);
-                              echo '<table border="1" cellspacing="2" cellpadding="2" align="center">';
-                              //Première ligne : Equipe A
-                       			  echo '<tr><td align="center">';
-                              echo  $tabA[0][1].' et '.$tabA[0][2].'</td>';
-                              foreach($scoreA as $keyA => $valueA){
-                                echo '<td align="center">'.$valueA['nbjeux'].'</td>';
-                              }
-                              echo '</tr>';
+<!--bas de page-->
+  <div class = "bas">
+      <ul id = "bottom1">
+        <li>Nos réseaux sociaux</li> <br><br><br>
+      </ul>
 
-                              //Deuxième ligne : Equipe B
-                              echo '<tr><td align="center">';
-                              echo  $tabB[0][1].' et '.$tabB[0][2].'</td>';
-                              foreach($scoreB as $keyB => $valueB){
-                                echo '<td align="center">'.$valueB['nbjeux'].'</td>';
-                              }
-                              echo '</tr>';
+      <ul id = "bottom2">
+      <li> <a href = "https://www.instagram.com/opensoprasteriadelyon/?hl=fr"> <img id = "logo" src = "../images/logoinstagram.png"> </a></li>
+      <li> <a href = "https://www.facebook.com/opensoprasteria/"> <img id = "logo" src ="../images/logofacebook.png"> </a></li>
+      <li> <a href = "https://twitter.com/opensoprasteria?lang=fr"> <img id = "logo" src = "../images/logotwitter.png"></a></li>
+      </ul>
+  </div>
+<!--fin bas de page-->
 
-                              echo '</table>';
-                              echo '</fieldset></center><br/><br/>';
-                            }
-                            else{//tournoi simple
-
-                              $tabJ = $maConnexionBD->getJoueursSimple($idmatch);
-
-                              echo '<table border="1" cellspacing="2" cellpadding="2" align="center">';
-                              //Première ligne : Equipe A
-                       			  echo '<tr><td align="center">';
-                              echo  $tabJ[0][1];
-                              foreach($scoreA as $keyA => $valueA){
-                                echo '<td align="center">'.$valueA['nbjeux'].'</td>';
-                              }
-                              echo '</tr>';
-
-                              //Deuxième ligne : Equipe B
-                              echo '<tr><td align="center">';
-                              echo  $tabJ[0][2];
-                              foreach($scoreB as $keyB => $valueB){
-                                echo '<td align="center">'.$valueB['nbjeux'].'</td>';
-                              }
-                              echo '</tr>';
-
-                              echo '</table>';
-                              echo '</fieldset></center><br/><br/>';
-
-                            }
-                          }
-                        }
-
-                    ?>
-
-                </div>
-            </div>
-
-            <div class = "container">
-               <div class = "bloc2">
-
-               </div>
-
-               <div class = "bloc3">
-                   <div class = "titres">
-                       <h2  class = "texteaccueil" align="center">Matchs à venir</h2>
-                   </div>
-                  <br><br>
-                  <?php
-                   echo '<table border="2px" cellspacing="5" cellpadding="2" align="center">
-                   <tr>
-                   <td id="entete" align="center">Date</td>
-                   <td id="entete" align="center">Affiche</td>
-                   <td id="entete" align="center">Créneau</td>
-                   </tr>';
-                   $tab= $maConnexionBD->getmatchsavenir();
-                   if(empty($tab)==FALSE){
-                     foreach ($tab as $key => $value) {
-                         echo '<fieldset>';
-                         echo '<tr><td align="center">'.$value['dateMatch'].'</td>';
-                         echo '<td align="center">'.$value['libelleMatch'].'</td>';
-                         echo '<td align="center">'.$value['creneauMatch'].'</td>';
-                         echo '</tr></fieldset>';
-                      }
-                   }
-                   echo '</table>';
-                  ?>
-
-              </div>
-            </div>
-    </body>
+</body>
 </html>

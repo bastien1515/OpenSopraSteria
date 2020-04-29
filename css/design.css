@@ -1,205 +1,345 @@
-body {/* design de toute la page */
-         color : black;
-         background-color : #EDEDED;
-         font-family : sans-serif;
-         position:relative;
-       }
 
-h1 {/* concerne uniquement le titre */
-    font-family: inherit;
-    text-align: center;
-    font-weight: 1500;
-    color: black;
-}
-h2 { text-align: center;
-    font-weight: 400;
-    font-size: 23;
-    color : black;
-    font : bold;
+/*Police du site*/
+@import url(https://fonts.googleapis.com/css?family=Muli);
+
+body {
+  background-color: #212121;
 }
 
-h3 { font-size 10px;}
-
-
-.block2diapo {
-   position :absolute;
-   top : 23%;
-   left : 27%;
+/*Design de la barre de menu */
+.menu {
+  font-family: 'Muli', Arial, sans-serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1em;
+  margin: auto;
+  text-transform: uppercase;
+}
+.menu li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0.5em 0.6em;
+  padding: 12px 15px;
+  position: relative;
+}
+.menu li a {
+  color: #fff;
+  text-decoration: none;
+}
+.menu li:before,
+.menu li:after {
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  height: 2px;
+  width: 35%;
+  background-color: #C63D07;             /*COULEUR TERRRE BATTUE*/
+  position: absolute;
+  content: '';
+  opacity: 0;
+}
+.menu li:before {
+  top: 0;
+  left: 0;
+}
+.menu li:after {
+  bottom: 0;
+  right: 0;
 }
 
-.block3 {
-    font-family: sans-serif;
-    font-weight: 600;
-    font-size: 13;
-    background-color : #B86116;
+.menu li:hover:before,
+.menu li.hover:before,
+.menu li:hover:after,
+.menu li.hover:after {
+  opacity: 1;
+}
+.menu li:hover:before,
+.menu li.hover:before {
+  left: 65%;
+}
+.menu li:hover:after,
+.menu li.hover:after {
+  right: 65%;
+}
+/*Fin du Design de la barre de menu */
 
+
+/*Bouton*/
+.bouton{
+  background-color: #C63D07;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Muli', Arial, sans-serif;
+  font-size: 1em;
+  font-size: 15px;
+  line-height: 1em;
+  margin: 10px 20px;
+  outline: none;
+  padding: 12px 30px 10px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
 
 }
 
-nav #menu {
-    margin-left: auto;
-    margin-right: auto;
-    list-style-type: none;
-    vertical-align: middle;
+.bouton:before,
+.bouton:after {
+  border-color: transparent;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  height: 24px;
+  position: absolute;
+  width: 24px;
 }
 
-nav li {/* aligner le menu*/
-    display : inline-block;
-    margin: auto;
-    padding : 0px;
-    width : 160px;
-    height : 42px;
-    border-right : 1px solid #CCCCCCCC;
-    line-height : 50px;
-}
-nav li a {
-    display : block;
-    text-decoration: none;
-    color : white;
-    text-align: center;
-}
-nav li :hover{
-    background-color : #EB9B57;}
-
-
-.styled {
-        border: 0;
-       margin-top: 0px;
-       float: right ;
-        line-height: 2.5;
-        padding: 0 20px;
-        font-size: 1rem;
-        text-align: center;
-        color: #fff;
-        text-shadow: 1px 1px 1px #000;
-        border-radius: 10px;
-        background-color: #CCD6D6;
-        background-image: linear-gradient(to top left,
-                                          rgba(10, 10, 10, .2),
-                                          rgba(0, 0, 0, .2) 30%,
-                                          rgba(0, 0, 0, 0));
-        box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
-                    inset -2px -2px 3px rgba(0, 0, 0, .6);
-    }
-
-    .styled:hover {
-        background-color: #DDDDDD;
+.bouton:before {
+  border-color: #C63D07;
+  border-top-width: 2px;
+  left: 0px;
+  top: -5px;
 }
 
-.button {
-    padding-left: 90px;
+.bouton:after {
+  border-bottom-width: 2px;
+  border-color: #C63D07;
+  bottom: -5px;
+  right: 0px;
 }
 
-button {
-    margin-left: .5em;
-}
-/*fin du menuuuuuuuuuuuu*/
-
-.block4 {background-color: #EDEDED;
-color : black;
-position:absolute;
-right : 0%;
-top : 23%;
-width : 25%;
-height : 30%;
-font-family : inherit;
+.bouton:hover,
+.bouton.hover {
+  background-color: #C63D07;
 }
 
-.block5 {
-    text-align: center;
-    background-color: #FFFF;
-    border: 2px solid #CCD6D6 ;
-    top : 22%;
-    width : 24%;
-    height : 30%;
-    position : fixed left;
-    left : 0%;
-    box-shadow: 0px 0px 10px;
+.bouton:hover:before,
+.bouton.hover:before,
+.bouton:hover:after,
+.bouton.hover:after {
+  height: 100%;
+  width: 100%;
+}
+/*Fin bouton*/
+
+
+/*Design image d'accueil*/
+.photo1{
+  position: absolute;
+  width: 100%;
+  opacity: 0.7;
 }
 
-.block6{
-    text-align : left;
-    background-color: #EDEDED;
-  width : 73%;
-  height : 10%;
-position :absolute;
-    top : 70%;
+.texte{
+position: relative;
+font-family: 'Muli', Arial, sans-serif;
+font-size: 45px;
+color: white;
+text-align: center;
+padding-top: 50px;
+font-weight: bold;
 }
+/* Fin design image d'accueil*/
 
-.block7 {
-background-color: #DCE3D4;
-color : black;
-font-size: 20px;
-position : relative;
+
+/* Design des actus du moment */
+#actusdumoment
+{
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+
+}
+.actu {
+  font-family: 'Roboto', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 230px;
+  max-width: 315px;
+  width: 100%;
+  color: whitesmoke;
+  text-align: left;
+  line-height: 1.4em;
+  background-color: #141414;
+}
+.actu * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.actu img {
+  max-width: 100%;
+  vertical-align: top;
+  opacity: 0.85;
+}
+.actu .date {
+  position: absolute;
+  background-color: black;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 10px 25px 0;
+  text-align: right;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+.actu .date:before {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 400px 55px 0;
+  border-color: transparent black transparent transparent;
+}
+.actu figcaption {
+  width: 100%;
+  background-color: #141414;
+  padding: 0 25px 25px;
+  position: relative;
+}
+.actu figcaption:before {
+  position: absolute;
+  content: '';
+  bottom: 100%;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 55px 0 0 400px;
+  border-color: transparent transparent transparent #141414;
+}
+.actu figcaption a {
+  padding: 5px;
+  border: 1px solid #C63D07;
+  color: #C63D07;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 10px 0;
+  display: inline-block;
+  opacity: 0.65;
+  width: 47%;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.actu figcaption a:hover {
+  opacity: 1;
+}
+.actu h2 {
+  margin: 0 0 10px;
+  font-weight: 300;
+  font-size: 1.5em;
+  line-height: 1.2em;
+}
+.actu p {
+  margin: 0 0 10px;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+/* Fin du Design des actus du moment */
+
+
+/*Design du bas de page */
+.bas{
+background-color: #47474F;
+color : whitesmoke;
+font-size: 15px;
+position: relative;
 top : 95%;
-height : 18%}
+height : 100px;
+font-family: 'Muli', Arial, sans-serif;
+}
 
 #bottom1 a:hover{
 color : aliceblue;
 }
 
 #bottom1 {
-    float: left
-
-}#bottom1 li {
-    display : block;
-    float : left
+    float: left;
 }
+
+#bottom1 li {
+    display : block;
+    float : left;
+    margin-top: 20px;
+}
+
 #bottom1 li a {
     text-decoration: none;
-    color : black;
 }
-#bottom2 {float : both;
+
+#bottom2 {
+  float : both;
 }
+
 #bottom2 li {
     display : inline-block;
     float : right;
-    margin-right : 20%}
-#logo {height : 50px; width : 50px;}
-
-/*autre page */
-
-.container {
-    width: 100%;
+    margin-right : 20%;
+    margin-top: 20px;
 }
 
-.raquette{
-  display: block;
-  width: 90%;
-margin-left: auto;
-margin-right: auto;
-  position: absolute;
+#logo {height : 50px; width : 50px;
 }
-
-.bloc2{
-  margin-left: 55%;
-  margin-top: 10%;
-  position: absolute;
-  background-color: whitesmoke;
-  opacity : 0.8;
-}
+/* Fin du Design du bas de page */
 
 
-.logoconnexion {
-  width: 10%;
-  float: left;
+
+/*Page Se connecter et s'inscrire*/
+
+.formulaire{
+  position: relative;
+  background-color: black;
+  width: 500px;
+  height: auto;
+  opacity:0.85;
+  margin-top:8%;
+  margin-left: 35%;
+  text-align: center;
+
 }
 
-.texteaccueil {
-    color : black;
-    text-align: center;
+.formulaire h6{
+  font-family: 'Muli', Arial, sans-serif;
+  color: whitesmoke;
+  font-size: 18px;
+  text-transform: uppercase;
 }
 
-.blocId {
-    width: 50%;
-    height: 100%;
-    text-align: center;
-    vertical-align: middle;
-}
 
 input[type="submit"]{
+  font-family: 'Roboto', Arial, sans-serif;
+    color: whitesmoke;
+    cursor: pointer;
+    padding: 0px 40px;
+    display: inline-block;
+    margin: 15px 30px;
+    text-transform: uppercase;
+    line-height: 2.7em;
+    letter-spacing: 1.5px;
+    font-size: 1em;
+    outline: none;
+    position: relative;
+    font-size: 12px;
+    border: 3px solid #C63D07;
+    background-color: transparent;
+    border-radius: 15px 0 15px 15px;
+  }
+
+/*
  cursor:pointer;
-display: inline-block;
+ display: inline-block;
   border-radius: 10px;
   background-color : grey;
   color: white;
@@ -209,81 +349,91 @@ display: inline-block;
   width: 150px;
   transition: all 0.5s;
   margin: 0px;
+  */
 }
 
-/* on passe à la page d'acceuil en commencant par le tableau planning */
+/*Fin Page Se connecter et s'inscrire*/
 
-.programmation {
-position : absolute;
-width : auto;
-height : auto;
-right : 50%;
-top : 95%
-
-}
-#tableau
-{
-border-collapse : collapse;
-text-align: center;
-margin : auto;
-}
+/*billetrie*/
 #entete {
-    border: 1px solid black;
-    font-size: 20px;
-}
-td
-{
-border: 1px solid black;
-}
-
-#contenu
-{}
-
-
-/*page admin */
-/* changement du bloc2 en 22 car sinon superposition.*/
-
-/*page actualité */
-
-.actudutournoi{
-text-align : left;
-background-color: #EDEDED;
-width : 73%;
-height : 90%;
-top : 11%;
-}
-
-.actutempsreel {
-background-color: #EDEDED;
-color : black;
-position:absolute;
-top : 11%;
-right : 0%;
-width : 25%;
-height : 30%;
-font-family : inherit;
-}
-
-/* page planning match */
-
-.programmation {
-position : absolute;
-right : 50%
-}
-#tableau2
-{
-border-collapse : collapse;
-text-align: center;
-margin : auto;
-}
-#entete {
-    border: 1px solid black;
+    font-family: 'Roboto', Arial, sans-serif;
+    text-transform: uppercase;
+    border: 2px solid black;
     font-size: 20px;
     background-color: dimgrey;
-   color : white;
+    color : whitesmoke;
+    background-color: #373737;
+  }
+
+#contenu {
+  font-family: 'Roboto', Arial, sans-serif;
+  text-transform: uppercase;
+  border: 2px solid black;
+  font-size: 15px;
+  background-color: dimgrey;
+  color : whitesmoke;
 }
+
 td
 {
 border: solid black;
-background-color :#CCD6D6 ;
+background-color:#212121;
+font-family: 'Roboto', Arial, sans-serif;
+font-size: 20px;
+color: whitesmoke;
+text-align: center;
 }
+
+#tableau
+{
+  padding-left: 5px;
+}
+
+.formulaire h5{
+  font-family: 'Muli', Arial, sans-serif;
+  color: whitesmoke;
+  font-size: 13px;
+}
+
+.bord
+{
+border-top:#C63D07;
+border-top-style: double;
+}
+
+.bord2
+{
+  border-bottom: #C63D07;
+  border-bottom-style: double;
+  padding-top: 5px;
+}
+/*Fin billetterie*/
+
+
+/*Admin*/
+.formulaireA
+{
+    position: relative;
+    background-color: black;
+    width: 1000px;
+    height: auto;
+    opacity:0.85;
+    margin-top:8%;
+    margin-left: 10%;
+    text-align: center;
+  }
+
+  .formulaireA h3
+  {
+  font-family: 'Muli', Arial, sans-serif;
+  color: whitesmoke;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+  .formulaireA h4
+  {
+    font-family: 'Muli', Arial, sans-serif;
+    color: whitesmoke;
+    font-size: 12px;
+  }

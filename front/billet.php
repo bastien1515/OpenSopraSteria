@@ -10,7 +10,7 @@ class PDF extends FPDF {
   // Header
   function Header() {
     // Logo : 8 >position à gauche du document (en mm), 2 >position en haut du document, 80 >largeur de l'image en mm). La hauteur est calculée automatiquement.
-    $this->Image('../images/logosopra.png',2,2,-1000);
+    $this->Image('../images/logoSS.png',2,2,-1000);
     // Saut de ligne 20 mm
     $this->Ln(20);
 
@@ -91,14 +91,6 @@ class PDF extends FPDF {
     $pdf->Cell(190,6,'PRIX TOTAL',0,1,'C',0);
     $pdf->SetFont('Helvetica','',12);
     $pdf->Cell(190,6,''.$_SESSION['prixtotal'],0,0,'C',0);
-
-
-
-
-
-
-
-
 
     // affichage à l'écran...
       $pdf->Output('test.pdf','I');

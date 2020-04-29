@@ -9,47 +9,56 @@
 
     <body>
 
-      <div class = "block3">
-          <nav>
-          <ul id = "menu"><!-- menu de navigation du site -->
-             <li><img src="logosopra.png" width="70%" height="70%"> </li>
-              <li><a href = "accueil.php"> Actualités </a> </li>
-              <li> <a href = "billeterie.php">  Billeterie </a></li>
-              <li> <a href="planningfront.php">Planning Match</a></li>
-              <li> <a href="planningfront.php">Résultats</a></li>
-              <a href = "seconnecter.php"><button class="favorite styled" type="button"> Se Connecter </button></a>
-              <a href = "sinscrire.php"><button class="favorite styled" type="button"> S'Inscrire </button></a>
-             </ul></nav></div>
+  <!--menu-->
+      <ul class="menu">
+        <img src="../images/logosopra.png" width="5%" height="10%">
+        <li><a href="accueil.php" data-hover="Accueil">Accueil</a></li>
+        <li><a href="actualites.php" data-hover="Actualités">Actualités</a></li>
+        <li><a href="planningfront.php" data-hover="Résultats">Résultats</a></li>
+        <li><a href="planningfront.php" data-hover="Planning">Planning Matchs</a></li>
+        <li><a href="billetterie.php" data-hover="Billetterie">Billeterie</a></li>
+
+        <?php
+        if(isset($_SESSION['mail'])){
+            echo '<form action="" method="post">';
+            echo '<input button class="bouton" type="submit" name="deco" value="Se deconnecter">';
+            echo '</form>';
+              if(isset($_POST['deco']))
+              {
+                     $co->disconnect();
+              }
+        }
+        else{
+            echo '<a href = "seconnecter.php"><button class="bouton" type="button"> Se Connecter </button></a>';
+            echo '<a href = "sinscrire.php"><button class="bouton" type="button"> S&apos;Inscrire </button></a>';
+        }
+        ?>
+
+      </ul>
+  <!--Fin du menu-->
 
 
-        <div class = "container">
-            <div class = "bloc1">
-                <img class = "raquette" src = raquette.png>
-            </div>
+  <!--Image d'accueil-->
+  <div class="accueil">
+    <img class="photo1" src="../images/terrebattue.jpg">
+    <div class="texte">
+       Espace Connexion Open Sopra Steria
+   </div>
+ </div>
+  <!--Fin Image accueil-->
 
-            <div class = "bloc2">
-                <div class = "titres">
-                    <img class = "logoconnexion" src = "logoconnexion.png">
-                    <h2  class = "texteaccueil">Espace Client Open Sopra Steria</h2>
-                </div>
 
-                <div class = "connexion">
-                    <div class = "blocId">
-                        <center>
-                            <form action = "seconnecter.php" method="post">
-                            <h6>Email :</h6>
-                            <input name="login">
-                            <h6>Mot de Passe :</h6>
-                            <input type="password" name="pass">
-                            <input type="submit" value="Connexion" name="co">
-                            </p>
-                            <!--Il faudra mettre du php pour vérifier les id et mdp quand le bouton connexion est pressé-->
-                            <!--Si le code n'est pas le bon, prévoir un echo "Identifiant ou mot de passe incorrect"-->
-
-                            <a href="recupererId.html"target=_blank><h6>Mot de passe oublié</h6></a>
-
-                            <!--Si tout est bon, faire lien vers l'espace client-->
-                        </form>
+<!--Formulaire-->
+    <div class = "formulaire">
+        <div class = "blocId">
+              <form action = "seconnecter.php" method="post">
+                <h6>Email :</h6>
+                <input name="login">
+                <h6>Mot de Passe :</h6>
+                <input type="password" name="pass">
+                <br><br>
+                <input type="submit" value="Connexion" name="co">
+              </form>
 
                         <?php
                         include_once("ClasseConnexion.php");
@@ -64,24 +73,34 @@
                             		$pass = $_REQUEST['pass'];
 
                             	   	$maConnexionBD->connexion($login,$pass);
-
-
                             	}
                             	else {
                             	    $_POST['co'] = NULL;
                             	}
                             }
                             catch (Exception $e) {
-
                             }
-
-
                         ?>
 
-                        </center>
-                    </div>
-                </div>
             </div>
-        </div>
+            </div>
+<!--Fin Formulaire-->
+
+
+<!--bas de page-->
+    <div class = "bas">
+      <ul id = "bottom1">
+          <li>Nos réseaux sociaux</li> <br><br><br>
+      </ul>
+
+      <ul id = "bottom2">
+          <li> <a href = "https://www.instagram.com/opensoprasteriadelyon/?hl=fr"> <img id = "logo" src = "../images/logoinstagram.png"> </a></li>
+          <li> <a href = "https://www.facebook.com/opensoprasteria/"> <img id = "logo" src ="../images/logofacebook.png"> </a></li>
+          <li> <a href = "https://twitter.com/opensoprasteria?lang=fr"> <img id = "logo" src = "../images/logotwitter.png"></a></li>
+     </ul>
+    </div>
+<!--fin bas de page-->
+
+
     </body>
 </html>

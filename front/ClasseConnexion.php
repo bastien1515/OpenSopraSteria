@@ -54,27 +54,26 @@ class Connection
                          if($value["mailclient"]=="admin") {
                              $admin=true;
                          }
-                   }
+                       }
 
-                      if($admin==true){
+                       if($admin==true){
                          echo ' <body onLoad="alert(\'Menu Admin \')">   ';
-                        echo '<meta http-equiv="refresh" content="0;URL=menuadmin.php">';
-                    }
-                    else{
-                    echo ' <body onLoad="alert(\'Bienvenue! \')">   ';
-                        echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
-                    }
+                         echo '<meta http-equiv="refresh" content="0;URL=menuadmin.php">';
+                       }
+                       else{
+                         echo ' <body onLoad="alert(\'Bienvenue! \')">   ';
+                         echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+                       }
 
-                   }else{
-                  echo '<body onLoad="alert(\'Mot de passe incorrect!\')">';
-                  }
+                    }else{
+                      echo '<body onLoad="alert(\'Mot de passe incorrect!\')">';
+                    }
 
             }else{
-               echo '<body onLoad="alert(\'Mail non reconnu!\')">';
-              }
+                echo '<body onLoad="alert(\'Mail non reconnu!\')">';
+            }
 
 	}
-
 
 	public function inscription($nom,$prenom,$telephone,$mail,$pass1)
     {
@@ -414,7 +413,7 @@ public function getlibellematch($idmatch){
     }
 
     public function colonnedatebillet () {
-      $sql = 'SELECT `idmatch`,`datematch`,`libellematch` FROM `_match` where inactif!=1  ';
+      $sql = 'SELECT `idmatch`,`datematch`,`libellematch` FROM `_match`';
      //INNER JOIN `billet` ON `billet`.`libellematch` = `_match`.`libellematch` ;
        $req = $this->_bdd->prepare($sql);
        $req->execute();
