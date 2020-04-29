@@ -67,12 +67,11 @@ class PDF extends FPDF {
     // Cellule avec les données du sous-titre sur 2 lignes, pas de bordure mais couleur de fond grise
     $pdf->SetFont('Helvetica','',11);
     $pdf->Cell(75,6,'Mail client: '.$_SESSION['mail'],0,0,'L',0);
-    $pdf->Cell(79,6,'Telephone client : ',0,1,'R',0);
+    $pdf->Cell(79,6,'Telephone client : '.$_SESSION['telephoneclient'],0,1,'R',0);
     $pdf->Ln(2);
-    $pdf->Cell(75,6,'Nom client :',0,0,'L',0);
-    $pdf->Cell(75,6,'Prenom client : ',0,1,'R',0);
+    $pdf->Cell(75,6,'Nom client : '.$_SESSION['nomclient'],0,0,'L',0);
+    $pdf->Cell(68,6,'Prenom client : '.$_SESSION['prenomclient'],0,1,'R',0);
     $pdf->Ln(2);
-    $pdf->Cell(75,6,'Adresse client : ',0,1,'L',0);
     //$pdf->Cell(75,6,strtoupper(utf8_decode($data_voyageur['prenom'].' '.$data_voyageur['nom'])),0,1,'L',1);
     $pdf->Ln(5); // saut de ligne 10mm
     $pdf->SetFont('Helvetica','B',13);
@@ -80,17 +79,17 @@ class PDF extends FPDF {
     $pdf->Ln(5);
     $pdf->SetFont('Helvetica','',11);
     $pdf->Cell(75,6,'Match : '.$_SESSION['libellematch'],0,0,'L',0);
-    $pdf->Cell(75,6,'Date du match :',0,1,'R',0);
+    $pdf->Cell(72,6,'Date du match : '.$_SESSION['datematch'],0,1,'R',0);
     $pdf->Ln(2);
-    $pdf->Cell(75,6,'Emplacement : '.$_SESSION['libelleemplacement'],0,0,'L',0);
-    $pdf->Cell(81,6,'Creneau du match : ',0,1,'R',0);
+    $pdf->Cell(75,6,'Emplacement : '.$_SESSION['libelleemplacement'],0,1,'L',0);
     $pdf->Ln(2);
-    $pdf->Cell(75,6,'Type de billet : '.$_SESSION['libelletbillet'],0,1,'L',0);
+    $pdf->Cell(75,6,'Type de billet : '.$_SESSION['libelletbillet'],0,0,'L',0);
+    $pdf->Cell(66,6,'Creneau du match : '.$_SESSION['creneaumatch'],0,1,'R',0);
     $pdf-> Ln(10);
     $pdf->SetFont('Helvetica','B',13);
     $pdf->Cell(190,6,'PRIX TOTAL',0,1,'C',0);
     $pdf->SetFont('Helvetica','',12);
-    $pdf->Cell(190,6,''.$_SESSION['prixtotal'],0,0,'C',0);
+    $pdf->Cell(190,6,''.$_SESSION['prixtotal'].' euros',0,0,'C',0);
 
     // affichage à l'écran...
       $pdf->Output('test.pdf','I');

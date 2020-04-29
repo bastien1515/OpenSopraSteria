@@ -46,6 +46,8 @@ class Connection
                        while ($donnees = $req->fetch())
                        {
                            $_SESSION['idclient']=$donnees['idclient'];
+
+
                        } // on stocke l'id du client.
 
                        //Distinction admin/client
@@ -74,6 +76,52 @@ class Connection
             }
 
 	}
+    public function getnomclient($mailclient){
+
+      $sql = 'SELECT NOMCLIENT FROM `client` WHERE MAILCLIENT =:mailclient';
+
+      $req = $this->_bdd->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
+      $req ->execute(array(':mailclient' => $mailclient));
+
+      while ($donnees = $req->fetch())
+      {
+          $resultat=$donnees['NOMCLIENT'];
+      }
+
+     return $resultat;
+    }
+
+   public function getprenomclient($mailclient){
+     $sql = 'SELECT PRENOMCLIENT FROM `client` WHERE MAILCLIENT =:mailclient ';
+
+     $req = $this->_bdd->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
+     $req ->execute(array(':mailclient' => $mailclient));
+
+     while ($donnees = $req->fetch())
+
+     {
+         $resultat=$donnees['PRENOMCLIENT'];
+     }
+
+    return $resultat;
+   }
+   public function getelephoneclient($mailclient){
+     $sql = 'SELECT TELCLIENT FROM `client` WHERE MAILCLIENT =:mailclient ';
+
+     $req = $this->_bdd->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
+     $req ->execute(array(':mailclient' => $mailclient));
+
+     while ($donnees = $req->fetch())
+
+     {
+         $resultat=$donnees['TELCLIENT'];
+     }
+
+    return $resultat;
+   }
 
 	public function inscription($nom,$prenom,$telephone,$mail,$pass1)
     {
@@ -1143,6 +1191,37 @@ public function ajoutCommande($idclient,$idemplacement,$idtbillet,$idpromo,$mont
         $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
       }
+
+     public function getdatematch($idmatch){
+       $sql = 'SELECT dateMatch FROM `_match` WHERE idmatch =:idmatch';
+
+       $req = $this->_bdd->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
+       $req ->execute(array(':idmatch' => $idmatch));
+
+       while ($donnees = $req->fetch())
+       {
+           $resultat=$donnees['dateMatch'];
+       }
+
+      return $resultat;
+     }
+
+    public function getcreneaumatch($idmatch){
+       $sql = 'SELECT creneauMatch FROM `_match` WHERE idmatch =:idmatch';
+
+       $req = $this->_bdd->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
+       $req ->execute(array(':idmatch' => $idmatch));
+
+       while ($donnees = $req->fetch())
+       {
+           $resultat=$donnees['creneauMatch'];
+       }
+
+      return $resultat;
+     }
+
 }
 
  ?>

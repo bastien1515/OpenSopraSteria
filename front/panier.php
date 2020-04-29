@@ -134,6 +134,16 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
      // récuperer idbillet
  ?>
 
+ <?php
+
+ $_SESSION['nomclient'] = $maConnexionBD -> getnomclient($_SESSION['mail']);
+
+ $_SESSION['prenomclient'] = $maConnexionBD -> getprenomclient($_SESSION['mail']);
+ $_SESSION['telephoneclient']=  $maConnexionBD -> getelephoneclient($_SESSION['mail']);
+ $_SESSION['datematch']= $maConnexionBD -> getdatematch($_SESSION['idmatchcommande']);
+ $_SESSION['creneaumatch']= $maConnexionBD -> getcreneaumatch($_SESSION['idmatchcommande']);?>
+
+
  <a href ="billet.php" >
    <input type='submit' value="Imprimer le billet" name="pdf">
   </a>
