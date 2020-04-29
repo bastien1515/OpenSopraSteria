@@ -48,6 +48,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
    <tr>
        <td id = "entete">Date</td>
        <td id = "entete">Match</td>
+       <td id = "entete">Quantitée restante</td>
        <td id ="entete">Choisissez votre billet</td>
 
         <?php
@@ -57,12 +58,16 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
         foreach ($tabE as $key => $value) {
        echo "<tr><TD>$value[datematch]<br></TD>";
        echo "<TD>$value[libellematch]<br></TD>";
+      //  echo "<TD> $value[idmatch] <br></TD>";
+        echo "<TD>"; $maConnexionBD->quantiteBillets($value['idmatch']);  echo "<br></TD>";
       // echo "<td>bonjour</td>";
        echo "<td><center><input type=radio id='choix$i' name='select'
        value=$value[idmatch]></center></TD></tr>";
      //  "<td><center><input type=radio id='choix$i' name = 'select2' value = $value[datematch]></center></TD></tr>";
        $i++;
        // echo $value[0];
+
+
        }
 
        ?>
