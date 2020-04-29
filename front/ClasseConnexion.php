@@ -400,20 +400,23 @@ public function getlibellematch($idmatch){
 
 	}
 
-    public function ajoutcodepromo( $libelleP,$coeffP){
+    public function ajoutcodepromo( $libelleP,$coeffP,$idtbillet){
 
-        $sql = 'INSERT INTO `promo`(`libellepromo`,`coeffpromo`)
-                VALUES(:libelle,:coeff)';
+        $sql = 'INSERT INTO `promo`(`libellepromo`,`coeffpromo`,`idtbillet`)
+                VALUES(:libelle,:coeff,:idtbillet)';
 
         $req = $this->_bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
-        $req ->execute(array(':libelle' => $libelleP, ':coeff' => $coeffP));
+        $req ->execute(array(':libelle' => $libelleP, ':coeff' => $coeffP,':idtbillet' => $idtbillet));
 
+        echo '<body onLoad="alert(\'ajout OK ...\')">';
+
+        echo '<body onLoad="alert(\'ajout OK ...\')">';
 
     }
 
     public function colonnedatebillet () {
-      $sql = 'SELECT `idmatch`,`datematch`,`libellematch` FROM `_match`';
+      $sql = 'SELECT `idmatch`,`dateMatch`,`libelleMatch` FROM `_match` ';//where inactif!=1  ';
      //INNER JOIN `billet` ON `billet`.`libellematch` = `_match`.`libellematch` ;
        $req = $this->_bdd->prepare($sql);
        $req->execute();
@@ -720,23 +723,7 @@ public function quantitemoins($idbillet){
         WHERE idbillet= :idbillet ';
 
     $req = $this->_bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-    $req ->execute(array(':idbillet' => $idbillet));
-}
-
-
-public function timelimit() {
-
-    set_time_limit(20);
-    if ($i<20){
-
-    echo "blablabla : $i";
-    $i++;}
-    else {
-        $this->_bdd -> disconnect();
-    }
-
-
-}
+    $req ->execute(array(':idbillet' => $idbillet));}
 
 public function ajoutCommande($idclient,$idemplacement,$idtbillet,$idpromo,$montant){
 
@@ -1157,7 +1144,6 @@ public function ajoutCommande($idclient,$idemplacement,$idtbillet,$idpromo,$mont
         $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
       }
-
 }
 
  ?>
