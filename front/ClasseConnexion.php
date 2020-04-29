@@ -675,23 +675,7 @@ public function quantitemoins($idbillet){
         WHERE idbillet= :idbillet ';
 
     $req = $this->_bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-    $req ->execute(array(':idbillet' => $idbillet));
-}
-
-
-public function timelimit() {
-
-    set_time_limit(20);
-    if ($i<20){
-
-    echo "blablabla : $i";
-    $i++;}
-    else {
-        $this->_bdd -> disconnect();
-    }
-
-
-}
+    $req ->execute(array(':idbillet' => $idbillet));}
 
 public function ajoutCommande($idclient,$idemplacement,$idtbillet,$idpromo,$montant){
 
@@ -1111,7 +1095,6 @@ public function ajoutCommande($idclient,$idemplacement,$idtbillet,$idpromo,$mont
         $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
       }
-
 }
 
  ?>
