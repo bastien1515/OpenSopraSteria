@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();?>
 <!doctype HMTL>
 <html >
 
@@ -32,7 +32,7 @@
              <ul id = "menu"><!-- menu de navigation du site -->
                 <li><img src="../images/logosopra.png" width="70%" height="70%"> </li>
                  <li><a href = "#"> Actualités </a> </li>
-                 <li> <a href = "#">  Billeterie </a></li>
+                 <li> <a href = "billeterie.php">  Billeterie </a></li>
                  <li> <a href="#">Planning Match</a></li>
                  <li> <a href="#">Résultats</a></li>
 
@@ -57,9 +57,7 @@
                     echo '<a href = "sinscrire.php"><button class="favorite styled" type="button"> S&apos;Inscrire </button></a></input>';
                 }
                 ?>
-
-
-
+                
                 </ul></nav></div>
 
 
