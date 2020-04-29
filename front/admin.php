@@ -177,7 +177,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
          <div class = "inscription">
 
            <center>
-                <form action="admingeneral.php" method="post" id="demoForm" class="demoForm">
+                <form action="admin.php" method="post" id="demoForm" class="demoForm">
                    <fieldset>
                    <!-- ici on fera plutot des listes déroulantes pour ces deux champs ou on selectionne les objets présents en BD -->
                   <h6>Selectionner les billets à supprimer :</h6>
@@ -252,7 +252,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
                  <div class = "inscription">
 
                          <center>
-                             <form action = "admingeneral.php" method="post">
+                             <form action = "admin.php" method="post">
                              <h6> Libelle</h6>
                                  <input type="text" name="libelleE"><br/>
                             <h6>Coefficient:</h6>
@@ -285,7 +285,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
                  <div class = "inscription">
 
                          <center>
-                             <form action = "admingeneral.php" method="post">
+                             <form action = "admin.php" method="post">
                              <h6> Libelle</h6>
                                  <input type="text" name="libelleP"><br/>
                             <h6>Coefficient:</h6>

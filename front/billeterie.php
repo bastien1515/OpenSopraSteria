@@ -54,10 +54,9 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
         <?php
         $i=1;
         $tabE= $maConnexionBD->colonnedatebillet();
-
         foreach ($tabE as $key => $value) {
-       echo "<tr><TD>$value[datematch]<br></TD>";
-       echo "<TD>$value[libellematch]<br></TD>";
+       echo "<tr><TD>$value[dateMatch]<br></TD>";
+       echo "<TD>$value[libelleMatch]<br></TD>";
       //  echo "<TD> $value[idmatch] <br></TD>";
         echo "<TD>"; $maConnexionBD->quantiteBillets($value['idmatch']);  echo "<br></TD>";
       // echo "<td>bonjour</td>";

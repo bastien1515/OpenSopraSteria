@@ -410,11 +410,12 @@ public function getlibellematch($idmatch){
 
         $req ->execute(array(':libelle' => $libelleP, ':coeff' => $coeffP));
 
+        echo '<body onLoad="alert(\'ajout OK ...\')">';
 
     }
 
     public function colonnedatebillet () {
-      $sql = 'SELECT `idmatch`,`datematch`,`libellematch` FROM `_match` where inactif!=1  ';
+      $sql = 'SELECT `idmatch`,`dateMatch`,`libelleMatch` FROM `_match` ';//where inactif!=1  ';
      //INNER JOIN `billet` ON `billet`.`libellematch` = `_match`.`libellematch` ;
        $req = $this->_bdd->prepare($sql);
        $req->execute();
