@@ -414,7 +414,7 @@ public function getlibellematch($idmatch){
     }
 
     public function colonnedatebillet () {
-      $sql = 'SELECT `idmatch`,`datematch`,`libellematch` FROM `_match` where inactif!=1  ';
+      $sql = 'SELECT `idmatch`,`datematch`,`libellematch` FROM `_match` where inactif!=1 ';
      //INNER JOIN `billet` ON `billet`.`libellematch` = `_match`.`libellematch` ;
        $req = $this->_bdd->prepare($sql);
        $req->execute();
