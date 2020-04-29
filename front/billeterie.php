@@ -2,7 +2,6 @@
 session_start();
 include_once("ClasseConnexion.php");
 $maConnexionBD = new Connection(); // nouvelle connection BD
-
 ?>
 <!DOCTYPE html>
 <html>

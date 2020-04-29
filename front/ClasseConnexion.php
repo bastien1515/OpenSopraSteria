@@ -54,26 +54,27 @@ class Connection
                          if($value["mailclient"]=="admin") {
                              $admin=true;
                          }
-                       }
+                   }
 
-                       if($admin==true){
+                      if($admin==true){
                          echo ' <body onLoad="alert(\'Menu Admin \')">   ';
-                         echo '<meta http-equiv="refresh" content="0;URL=menuadmin.php">';
-                       }
-                       else{
-                         echo ' <body onLoad="alert(\'Bienvenue! \')">   ';
-                         echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
-                       }
-
-                    }else{
-                      echo '<body onLoad="alert(\'Mot de passe incorrect!\')">';
+                        echo '<meta http-equiv="refresh" content="0;URL=menuadmin.php">';
+                    }
+                    else{
+                    echo ' <body onLoad="alert(\'Bienvenue! \')">   ';
+                        echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
                     }
 
+                   }else{
+                  echo '<body onLoad="alert(\'Mot de passe incorrect!\')">';
+                  }
+
             }else{
-                echo '<body onLoad="alert(\'Mail non reconnu!\')">';
-            }
+               echo '<body onLoad="alert(\'Mail non reconnu!\')">';
+              }
 
 	}
+
 
 	public function inscription($nom,$prenom,$telephone,$mail,$pass1)
     {

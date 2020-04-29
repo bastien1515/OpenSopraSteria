@@ -58,8 +58,8 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
     </script>
 
     <?php
-    if(isset($_SESSION['mail'])){
-      if($_SESSION['mail']=='admin'){
+    //if(isset($_SESSION['mail'])){
+    //  if($_SESSION['mail']=='admin'){
         echo '<div class = "block3">
             <nav>
             <ul id = "menu"><!-- menu de navigation du site -->
@@ -79,16 +79,16 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
             echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
         }
         echo '</ul></nav></div>';
-      }
-      else{
-       echo '<body onLoad="alert(\' Acces refusé \')">';
-       echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
-      }
-    }
-    else{
-      echo '<body onLoad="alert(\' Acces refusé \')">';
-      echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
-    }
+//      }
+    //  else{
+    //   echo '<body onLoad="alert(\' Acces refusé \')">';
+    //   echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+  //    }
+//    }
+  //  else{
+  //    echo '<body onLoad="alert(\' Acces refusé \')">';
+  //    echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+//    }
     ?>
 
 

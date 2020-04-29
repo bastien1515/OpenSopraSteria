@@ -135,11 +135,11 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
                    </div>
                   <br><br>
                   <?php
-                   echo '<table border="1" cellspacing="2" cellpadding="2" align="center">
+                   echo '<table border="2px" cellspacing="5" cellpadding="2" align="center">
                    <tr>
-                   <td align="center">Date</td>
-                   <td align="center">Affiche</td>
-                   <td align="center">Créneau</td>
+                   <td id="entete" align="center">Date</td>
+                   <td id="entete" align="center">Affiche</td>
+                   <td id="entete" align="center">Créneau</td>
                    </tr>';
                    $tab= $maConnexionBD->getmatchsavenir();
                    if(empty($tab)==FALSE){

@@ -78,10 +78,10 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
 
 
                     <p>
-                    <input type="submit" value="valider" name="validerB">
+                    <input type="submit" value="valider" name="validerBi">
                     </p>
                     <?php
-                        if(isset($_POST['validerB']))
+                        if(isset($_POST['validerBi']))
                         {
 
                         }
@@ -99,7 +99,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
 //     echo $_COOKIE['idmatch'];
 //marche pas en cookie
 
-if(isset($_POST['validerB']))
+if(isset($_POST['validerBi']))
 {
     $idbillet= $_SESSION['idtbillet'];
     $idmatch= $_SESSION['idmatch'];
