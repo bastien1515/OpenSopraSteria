@@ -12,26 +12,48 @@ $maConnexionBD = new Connection();?>
     </head>
 
     <body>
-
+      <script type="text/javascript">
+            var param="";
+            var i=1;
+                function getSelected(sel) {
+                     var idMatch = sel.options[sel.selectedIndex].value; // recupere le champ value de l'option (l'ID)
+                    // alert(sel.options[sel.selectedIndex].text); // récupere le texte stocké dans l'option
+                     a=idMatch;
+                     window.location.href ="admin.php?var1="+a;
+                }
+      </script>
       <!--menu-->
-        <ul class="menu">
-        <img src="../images/logosopra.png" width="5%" height="10%">
-        <li><a href="joueur.php" data-hover="Joueur">Gestion Joueurs</a></li>
-        <li><a href="planning1.php" data-hover="Match">Gestion Matchs</a></li>
-        <li><a href="admin.php" data-hover="Billet">Gestion Billetterie</a></li>
-        <li><a href="score.php" data-hover="Score">Gestion Scores</a></li>';
-<?php
-        echo '<form action="" method="post">';
-        echo '<input class="bouton" type="submit" name="deco" value="Se deconnecter">';
-        echo '</form>';
-       if(isset($_POST['deco']))
-       {
-           $maConnexionBD->disconnect();
-           echo '<body onLoad="alert(\'Déconnexion...\')">';
-           echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
-       }
-?>
-    </ul>
+      <?php
+      if(isset($_SESSION['mail'])){
+        if($_SESSION['mail']=='admin'){
+          echo '<ul class= "menu">
+                  <img src="../images/logosopra.png" width="5%" height="10%">
+                  <li><a href = "joueur.php" data-hover="Joueur">Gestion Joueurs</a></li>
+                  <li><a href = "planning1.php" data-hover="Match">Gestion Matchs</a></li>
+                  <li><a href="admin.php" data-hover="Billet">Gestion Billetterie</a></li>
+                  <li><a href="score.php" data-hover="Score">Gestion Scores</a></li>';
+
+           echo '<form action="" method="post">';
+           echo '<input class="bouton" type="submit" name="deco" value="Se déconnecter">';
+           echo '</form>';
+           if(isset($_POST['deco']))
+           {
+              $maConnexionBD->disconnect();
+              echo '<body onLoad="alert(\'Déconnexion...\')">';
+              echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+           }
+          echo '</ul>';
+        }
+        else{
+         echo '<body onLoad="alert(\' Acces refusé \')">';
+         echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+        }
+      }
+      else{
+        echo '<body onLoad="alert(\' Acces refusé \')">';
+        echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+      }
+      ?>
       <!--Fin du menuA-->
 
 
@@ -222,21 +244,28 @@ $maConnexionBD = new Connection();?>
                      <h4>Coefficient : </h4>
                           <input type="text" name="coeffP"><br/>
 
-                         <p>
+                     <h4>Billet concerné :</h4>
+
+                         <select name="tbillet">
+                         <option value="1" > Promo </option>
+                         <option value="4" > Billet solidarité </option>
+                         </select>
+
+                      <p>
                           <input type="submit" value="Valider" name="validerP">
                       </p>
                       </fieldset>
                       </form>
 
-                     <?php
+                    <h5> <?php
                    if(isset($_POST['validerP'])) {
 
-                   $libelleP = $_REQUEST['libelleP'];
-                   $coeffP = $_REQUEST['coeffP'];
-
-                   $maConnexionBD->ajoutcodepromo($libelleP,$coeffP);
+                   $libelleP = $_POST['libelleP'];
+                   $coeffP = $_POST['coeffP'];
+                   $idtbillet = $_POST['tbillet'];
+                   $maConnexionBD->ajoutcodepromo($libelleP,$coeffP,$idtbillet);
                    }
-                     ?>
+                     ?></h5>
 
 
                   </center>

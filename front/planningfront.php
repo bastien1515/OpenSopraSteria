@@ -65,11 +65,9 @@ $maConnexionBD = new Connection();?>
    $tab= $maConnexionBD->getmatchsavenir();
    if(empty($tab)==FALSE){
      foreach ($tab as $key => $value) {
-         echo '<fieldset>';
          echo '<tr><td id="contenu" align="center">'.$value['dateMatch'].'</td>';
          echo '<td id="contenu" align="center">'.$value['libelleMatch'].'</td>';
          echo '<td id="contenu" align="center">'.$value['creneauMatch'].'</td>';
-         echo '</tr></fieldset>';
       }
    }
    echo '</table>';

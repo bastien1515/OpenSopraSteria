@@ -70,8 +70,8 @@ $i=1;
 $tabE= $maConnexionBD->colonnedatebillet();
 
 foreach ($tabE as $key => $value) {
-echo "<tr><td>$value[datematch]<br></td>";
-echo "<td>$value[libellematch]<br></td>";
+echo "<tr><td>$value[dateMatch]<br></td>";
+echo "<td>$value[libelleMatch]<br></td>";
 echo "<td>"; $maConnexionBD->quantiteBillets($value['idmatch']);  echo "<br></td>";
 echo "<td><center><input type=radio id='choix$i' name='select' value=$value[idmatch]></center></td></tr>";
 $i++;

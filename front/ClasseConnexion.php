@@ -411,7 +411,6 @@ public function getlibellematch($idmatch){
 
         echo '<body onLoad="alert(\'ajout OK ...\')">';
 
-        echo '<body onLoad="alert(\'ajout OK ...\')">';
 
     }
 
