@@ -80,6 +80,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
 
        $_SESSION['coefmatch']=$maConnexionBD ->getcoefmatch($_SESSION['idmatchcommande']);
 
+       $_SESSION['idclient']=$maConnexionBD ->getidclient2($_SESSION['mail']);
 
        $_SESSION['coeffpromo']=$maConnexionBD ->getcoeffpromo($_SESSION['idpromo']);
 
@@ -121,10 +122,10 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
      $montant = $_SESSION['prixtotal'];
      $idclient= $_SESSION['idclient'];
      $idemplacement=$_SESSION['idemplacement'];
-     $idpromo=$_SESSION['idpromo'];
+     //$idpromo=$_SESSION['idpromo'];
      $idtbillet=$maConnexionBD->getidtbillet($_SESSION['libelletbillet']);
 
-     $maConnexionBD->ajoutCommande($idclient,$idemplacement,$idtbillet,$idpromo,$montant);
+     $maConnexionBD->ajoutCommande($idclient,$idemplacement,$idtbillet,$montant);
 
 
      $idbillet=$maConnexionBD->getBilletByMatch($_SESSION['idmatchcommande']);

@@ -123,6 +123,24 @@ class Connection
     return $resultat;
    }
 
+   public function getidclient2($mailclient){
+
+     $sql = 'SELECT IDCLIENT FROM `client` WHERE MAILCLIENT =:mailclient ';
+
+     $req = $this->_bdd->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
+     $req ->execute(array(':mailclient' => $mailclient));
+
+     while ($donnees = $req->fetch())
+
+     {
+         $resultat=$donnees['IDCLIENT'];
+     }
+
+    return $resultat;
+
+   }
+
 	public function inscription($nom,$prenom,$telephone,$mail,$pass1)
     {
             $sql ='SELECT IDCLIENT from `client` where mailclient=:mail';
@@ -772,15 +790,15 @@ public function quantitemoins($idbillet){
     $req = $this->_bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $req ->execute(array(':idbillet' => $idbillet));}
 
-public function ajoutCommande($idclient,$idemplacement,$idtbillet,$idpromo,$montant){
+public function ajoutCommande($idclient,$idemplacement,$idtbillet,$montant){
 
-        $sql = 'INSERT INTO `commande`(`idclient`,`idemplacement`,`idtbillet`,`idpromo`,`montant`)
-                VALUES(:idclient,:idemplacement,:idtbillet,:idpromo,:montant)';
+        $sql = 'INSERT INTO `commande`(`idclient`,`idemplacement`,`idtbillet`,`montant`)
+                VALUES(:idclient,:idemplacement,:idtbillet,:montant)';
 
         $req = $this->_bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
         $req->execute(array(':idclient' => $idclient, ':idemplacement' => $idemplacement,
-        ':idtbillet' => $idtbillet,':idpromo' => $idpromo,':montant' => $montant));
+        ':idtbillet' => $idtbillet,':montant' => $montant));
 
 
 }
