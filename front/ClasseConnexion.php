@@ -401,14 +401,16 @@ public function getlibellematch($idmatch){
 
 	}
 
-    public function ajoutcodepromo( $libelleP,$coeffP){
+    public function ajoutcodepromo( $libelleP,$coeffP,$idtbillet){
 
-        $sql = 'INSERT INTO `promo`(`libellepromo`,`coeffpromo`)
-                VALUES(:libelle,:coeff)';
+        $sql = 'INSERT INTO `promo`(`libellepromo`,`coeffpromo`,`idtbillet`)
+                VALUES(:libelle,:coeff,:idtbillet)';
 
         $req = $this->_bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
-        $req ->execute(array(':libelle' => $libelleP, ':coeff' => $coeffP));
+        $req ->execute(array(':libelle' => $libelleP, ':coeff' => $coeffP,':idtbillet' => $idtbillet));
+
+        echo '<body onLoad="alert(\'ajout OK ...\')">';
 
 
     }
