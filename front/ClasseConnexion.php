@@ -42,23 +42,39 @@ class Connection
                        $sql = 'SELECT idclient,mailclient FROM `client` WHERE mailclient = :mail';
                        $req = $this->_bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
                        $req ->execute(array(':mail' => $mail));
+                       $tab = $req->fetchall();
                        while ($donnees = $req->fetch())
                        {
                            $_SESSION['idclient']=$donnees['idclient'];
                        } // on stocke l'id du client.
 
-                       echo ' <body onLoad="alert(\'Bienvenue! \')">   ';
-                       echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+                       //Distinction admin/client
+                       $admin = false;
+                       foreach ($tab as $key => $value){
+                         if($value["mailclient"]=="admin") {
+                             $admin=true;
+                         }
+                   }
 
-                    }else{
-                      echo '<body onLoad="alert(\'Mot de passe incorrect!\')">';
+                      if($admin==true){
+                         echo ' <body onLoad="alert(\'Menu Admin \')">   ';
+                        echo '<meta http-equiv="refresh" content="0;URL=menuadmin.php">';
+                    }
+                    else{
+                    echo ' <body onLoad="alert(\'Bienvenue! \')">   ';
+                        echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
                     }
 
+                   }else{
+                  echo '<body onLoad="alert(\'Mot de passe incorrect!\')">';
+                  }
+
             }else{
-                echo '<body onLoad="alert(\'Mail non reconnu!\')">';
-            }
+               echo '<body onLoad="alert(\'Mail non reconnu!\')">';
+              }
 
 	}
+
 
 	public function inscription($nom,$prenom,$telephone,$mail,$pass1)
     {
@@ -81,12 +97,25 @@ class Connection
 	}
 
 	public function disconnect(){
-
+      $_SESSION = array();
 	    session_destroy();
 	    $this->_bdd =null;
 	    die();
 
 	}
+
+
+  public function isAdmin($mail){
+
+    $res = false;
+
+    if ($mail=='admin'){
+      $res = true;
+    }
+
+    return $res;
+
+  }
 
 
 	/* ancienne fonction aout billet
@@ -389,10 +418,27 @@ public function getlibellematch($idmatch){
      //INNER JOIN `billet` ON `billet`.`libellematch` = `_match`.`libellematch` ;
        $req = $this->_bdd->prepare($sql);
        $req->execute();
-       $resultat = $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+       $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+
        return $resultat;
 
       }
+
+      public function quantiteBillets($idMatch) {
+
+          $sql = 'SELECT sum(quantite) from billet where idmatch= :id';
+
+          //$sql = 'CALL billets_restants(:id,@qtotale)';
+
+        $req = $this->_bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
+        $req->execute(array(':id' => $idMatch));
+
+       $resultat = $req->fetch();
+
+         echo $resultat[0];
+
+        }
 
 public function verifpromo2($libellepromo)
     {
@@ -766,8 +812,7 @@ public function ajoutCommande($idclient,$idemplacement,$idtbillet,$idpromo,$mont
 	public function afficherMatch() {
 
     $sql = '
-             SELECT `idmatch`,`dateMatch`,`libelleMatch`,`creneauMatch`
-             FROM `_match`
+             SELECT * from matchs
            ';
 
     $req = $this->_bdd->prepare($sql);
@@ -1029,7 +1074,9 @@ public function ajoutCommande($idclient,$idemplacement,$idtbillet,$idpromo,$mont
      }
 
      public function getmatchsjoues() {
-      $sql = 'SELECT `idmatch`,`dateMatch`,`libelleMatch`,`creneauMatch`,`tournoi` FROM `_match` WHERE `estjoue`=1 ORDER BY `datematch`';
+      //$sql = 'SELECT `idmatch`,`dateMatch`,`libelleMatch`,`creneauMatch`,`tournoi` FROM `_match` WHERE `estjoue`=1 ORDER BY `datematch`';
+      $sql = 'SELECT * FROM `matchs_terminés`';
+
       $req = $this->_bdd->prepare($sql);
       $req->execute();
       $resultat = $req->fetchAll(PDO::FETCH_ASSOC);

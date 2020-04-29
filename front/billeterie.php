@@ -2,7 +2,6 @@
 session_start();
 include_once("ClasseConnexion.php");
 $maConnexionBD = new Connection(); // nouvelle connection BD
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,13 +16,27 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
           <nav>
           <ul id = "menu"><!-- menu de navigation du site -->
              <li><img src="logosopra.png" width="70%" height="70%"> </li>
-              <li><a href = "#"> Actualités </a> </li>
-              <li> <a href = "#">  Billeterie </a></li>
-              <li> <a href="#">Planning Match</a></li>
-              <li> <a href="#">Résultats</a></li>
-             <a href = "seconnecter.php"><button class="favorite styled" type="button"> Se Connecter </button></a>
-             <a href = "sinscrire.php"><button class="favorite styled" type="button"> S'Inscrire </button></a>
-             </ul></nav></div>
+              <li><a href = "accueil.php"> Actualités </a> </li>
+              <li> <a href = "billeterie.php">  Billeterie </a></li>
+              <li> <a href="planningfront.php">Planning Match</a></li>
+              <li> <a href="planningfront.php">Résultats</a></li>
+              <?php
+              if(isset($_SESSION['mail'])){
+                  //echo '<a href = "moncompte.php"><button class="favorite styled" type="button"> Billeterie </button></a></input>';
+                  echo '<form action="" method="post">';
+                  echo '<input class="favorite styled" type="submit" name="deco" value="Se deconnecter">';
+                  echo '</form>';
+                    if(isset($_POST['deco']))
+                    {
+                          $maConnexionBD->disconnect();
+                    }
+              }
+              else{
+                  echo '<a href = "seconnecter.php"><button class="favorite styled" type="button"> Se Connecter </button></a>';
+                  echo '<a href = "sinscrire.php"><button class="favorite styled" type="button"> S&apos;Inscrire </button></a>';
+              }
+              ?>
+            </ul></nav></div>
 
             <h2  class = "texteaccueil">Passer une commande</h2>
 
@@ -35,6 +48,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
    <tr>
        <td id = "entete">Date</td>
        <td id = "entete">Match</td>
+       <td id = "entete">Quantitée restante</td>
        <td id ="entete">Choisissez votre billet</td>
 
         <?php
@@ -44,12 +58,16 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
         foreach ($tabE as $key => $value) {
        echo "<tr><TD>$value[datematch]<br></TD>";
        echo "<TD>$value[libellematch]<br></TD>";
+      //  echo "<TD> $value[idmatch] <br></TD>";
+        echo "<TD>"; $maConnexionBD->quantiteBillets($value['idmatch']);  echo "<br></TD>";
       // echo "<td>bonjour</td>";
        echo "<td><center><input type=radio id='choix$i' name='select'
        value=$value[idmatch]></center></TD></tr>";
      //  "<td><center><input type=radio id='choix$i' name = 'select2' value = $value[datematch]></center></TD></tr>";
        $i++;
        // echo $value[0];
+
+
        }
 
        ?>

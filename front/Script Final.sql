@@ -244,7 +244,6 @@ BEGIN
 END |
 
 
-
 --Trigger 2 - Supprime un match quand la quantité de billet tombe à zero
 --pour ne pas proposer des billets sold out à la vente.
 -- + Desactiver un match dont la date est passé.
@@ -344,7 +343,7 @@ VALUES ('1', '0', '0', '0', 'Janvier');
 -- commande d'un billet licencié
 
 DELIMITER |
-CREATE PROCEDURE enr()
+CREATE PROCEDURE enregistrer_licence()
 	BEGIN
   DECLARE id INT;
   DECLARE done INT DEFAULT FALSE; -- variable done indique quand on a parcouru toutes les données
@@ -397,3 +396,22 @@ END;
 
 -- Pour des raisons d’équité, un même arbitre de chaise ne doit pas juger plus de
 --  4 matchs sur la durée du tournoi (2 en Simples et 2 en Double).
+
+
+create or replace VIEW matchs_terminés
+as
+SELECT `idmatch`,`dateMatch`,`libelleMatch`,`creneauMatch`,`tournoi` FROM `_match` WHERE `estjoue`=1 ORDER BY `datematch`;
+
+create or  replace VIEW Matchs
+  as
+SELECT `idmatch`,`dateMatch`,`libelleMatch`,`creneauMatch`
+FROM `_match`
+
+
+-- gestion des Index
+
+CREATE UNIQUE INDEX index_mail
+ON client (MAILCLIENT);  -- Crée un index UNIQUE
+
+CREATE INDEX index_matchs
+ON billet (idmatch);  -- Crée un index simple

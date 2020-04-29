@@ -140,7 +140,7 @@ color : aliceblue;
 
 #bottom1 {
     float: left
-    
+
 }#bottom1 li {
     display : block;
     float : left
@@ -236,6 +236,9 @@ td
 border: 1px solid black;
 }
 
+#contenu
+{}
+
 
 /*page admin */
 /* changement du bloc2 en 22 car sinon superposition.*/
@@ -284,10 +287,3 @@ td
 border: solid black;
 background-color :#CCD6D6 ;
 }
-
-
-
-
-
-
-

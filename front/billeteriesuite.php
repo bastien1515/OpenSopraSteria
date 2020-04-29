@@ -33,7 +33,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
                <h2  class = "texteaccueil">Mon panier</h2>
 
                              <center>
-                                 <form method="post" id="demoForm" class="demoForm">
+                                 <form method="post">
 
                                      <h6>votre billet : </h6>
                                          <?php  if (isset($_POST['select'])){
@@ -79,7 +79,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
                           cette ligne permettra de cacher le champ, à afficher en Javascript ensuite quand un billet promo sera selectionné
                           -->
                                    <div id="promo" style="display: none;">
-                                <h6>code promo  :  </h6>
+                                <h6>Code promo  :  </h6>
                                      <input type = "text" name = "libelleP"> <br/>
 
                                   </div>
@@ -149,11 +149,11 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
                                       <input type='button' value="Page suivante" name="co">
                                      </a>
 
-                                  <p>
-                                    </div>
 
 
-                                     </a>
+
+
+
                              </center>
            </body>
            </html>
