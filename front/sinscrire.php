@@ -78,12 +78,13 @@
                    $mail = $_REQUEST['mail'];
                    $pass1 = $_REQUEST['pass1'];
                    $pass2 = $_REQUEST['pass2'];
-
+                  var_dump($_REQUEST);
                    if ($pass1!=$pass2 ){
                         echo '  <body onLoad="alert(\'Erreur. Les deux mots de passe saisis sont différents.\')">   ';
                    }
                    else{
                          $pass_crypte= password_hash($pass1, PASSWORD_BCRYPT); // cryptage du mdp
+
                          $maConnexionBD->inscription($nom,$prenom,$telephone,$mail,$pass_crypte);
                    }
                }

@@ -10,7 +10,7 @@
                  element.style.display='block';
              }
 
-             if (libelletbillet === 'journéeSolidaritée'){
+             if (libelletbillet === 'journéeSolidarité'){
                  var element= document.getElementById('promo');
                  element.style.display='block';
              }

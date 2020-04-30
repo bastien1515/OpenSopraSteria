@@ -481,7 +481,7 @@ public function getlibellematch($idmatch){
     }
 
     public function colonnedatebillet () {
-      $sql = 'SELECT `idmatch`,`dateMatch`,`libelleMatch` FROM `_match` ';//where inactif!=1  ';
+      $sql = 'SELECT `idmatch`,`dateMatch`,`libelleMatch` FROM `_match` where inactif!=1 AND estjoue!=1  ';
      //INNER JOIN `billet` ON `billet`.`libellematch` = `_match`.`libellematch` ;
        $req = $this->_bdd->prepare($sql);
        $req->execute();
@@ -521,7 +521,7 @@ public function verifpromo2($libellepromo)
 
       if ($nb>0)  {
 
-                  //$_SESSION['libellepromo'] = $libellepromo;
+                  $_SESSION['libellepromo'] = $libellepromo;
 
                  // on redirige notre visiteur vers la page d'acceuil avec un message
                   echo ' <body onLoad="alert(\'Code promo OK .....\')">   ';

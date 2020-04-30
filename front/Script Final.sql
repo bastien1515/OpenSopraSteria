@@ -295,49 +295,46 @@ AS
 
 
 --  Insertion des données de test
-INSERT INTO `equipea` (`equipeArbitre`, `libelleEquipeA`) VALUES (NULL, 'Equipe 1');
+  INSERT INTO `equipea` (`equipeArbitre`, `libelleEquipeA`) VALUES (NULL, 'Equipe 1');
 
-INSERT INTO `equiper` (`equipeRamasseurs`, `libelleEquipeR`) VALUES (NULL, 'brascassés');
-INSERT INTO `equiper` (`equipeRamasseurs`, `libelleEquipeR`) VALUES (NULL, 'etudiants');
+  INSERT INTO `equiper` (`equipeRamasseurs`, `libelleEquipeR`) VALUES (NULL, 'brascassés');
+  INSERT INTO `equiper` (`equipeRamasseurs`, `libelleEquipeR`) VALUES (NULL, 'etudiants');
 
-INSERT INTO `ramasseurs` (`idRamasseur`, `nomRamasseur`, `prenomRamasseur`, `equipeRamasseurs`) VALUES (NULL, 'Magic', 'Jhonson', '1');
-INSERT INTO `ramasseurs` (`idRamasseur`, `nomRamasseur`, `prenomRamasseur`, `equipeRamasseurs`) VALUES (NULL, 'Kobe', 'Bryan', '1');
+  INSERT INTO `ramasseurs` (`idRamasseur`, `nomRamasseur`, `prenomRamasseur`, `equipeRamasseurs`) VALUES (NULL, 'Magic', 'Jhonson', '1');
+  INSERT INTO `ramasseurs` (`idRamasseur`, `nomRamasseur`, `prenomRamasseur`, `equipeRamasseurs`) VALUES (NULL, 'Kobe', 'Bryan', '1');
 
-INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Cazelly', 'Aurore', '2019-04-17', 'Francais', '150');
-INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Busquet', 'Salomé', '2019-04-17', 'Francais', '150');
+  INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Cazelly', 'Aurore', '2019-04-17', 'Francais', '150');
+  INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Busquet', 'Salomé', '2019-04-17', 'Francais', '150');
 
-INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Quemar', 'Martin', '2019-04-17', 'Francais', '150');
-INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Anginieur', 'Bastien', '2019-04-17', 'Francais', '150');
+  INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Quemar', 'Martin', '2019-04-17', 'Francais', '150');
+  INSERT INTO `joueur` (`idjoueur`, `nomjoueur`, `prenomjoueur`, `datenaissance`, `nationalite`, `classementATP`) VALUES (NULL, 'Anginieur', 'Bastien', '2019-04-17', 'Francais', '150');
 
-INSERT INTO `_match` (`idmatch`, `libelleMatch`, `dateMatch`, `coeffMatch`, `courtMatch`, `creneauMatch`, `typeMatch`, `tournoi`, `equipeA`, `equipeR1`, `equipeR2`, `joueurA1`, `joueurA2`, `joueurB1`, `joueurB2`, `inactif`, `estjoue`)
-VALUES (NULL, 'Match1', '2020-07-23', '1', 'Central', '14h', 'double', 'Open', '1', '1', '2', '1', '2', '3', '4', '0', '0');
-
-
--- création match simple
-INSERT INTO `_match` (`idmatch`, `libelleMatch`, `dateMatch`, `coeffMatch`, `courtMatch`, `creneauMatch`, `typeMatch`, `tournoi`, `equipeA`, `equipeR1`, `equipeR2`, `joueurA1`, `joueurA2`, `joueurB1`, `joueurB2`, `inactif`, `estjoue`)
-VALUES (NULL, 'Match1', '2020-07-24', '1.2', 'Central', '14h', 'simple', 'Open', '1', '1', '2', '1', null, '2', null, '0', '0');
+  INSERT INTO `_match` (`idmatch`, `libelleMatch`, `dateMatch`, `coeffMatch`, `courtMatch`, `creneauMatch`, `typeMatch`, `tournoi`, `equipeA`, `equipeR1`, `equipeR2`, `joueurA1`, `joueurA2`, `joueurB1`, `joueurB2`, `inactif`, `estjoue`)
+  VALUES (NULL, 'Match1', '2020-07-23', '1', 'Central', '14h', 'double', 'Open', '1', '1', '2', '1', '2', '3', '4', '0', '0');
 
 
-INSERT INTO `_match` (`idmatch`, `libelleMatch`, `dateMatch`, `coeffMatch`, `courtMatch`, `creneauMatch`, `typeMatch`, `tournoi`,
-`equipeA`, `equipeR1`, `equipeR2`, `inactif`)
-VALUES (NULL, 'Match2', '2020-07-24', '1.1', 'Central', '14h', 'double', 'Open', '1', '1', '2', '1', '2', '2', '4', '0', '0');
-
-INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '50', 'promo');
-INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'licencie');
-INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'grand public');
-INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'journéeSolidarité');
-INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'the big match');
-
-INSERT INTO `emplacement` (`idemplacement`, `libelleemplacement`, `coeffemplacement`) VALUES (NULL, 'Tribune', '0.95');
-INSERT INTO `promo` (`idpromo`, `libellepromo`, `coeffpromo`, `idtbillet`) VALUES (NULL, 'Etudiant', '0.9', '2');
-INSERT INTO `licence` (`idlicence`, `numlicencie`) VALUES (NULL, '10');
-INSERT INTO `billet` (`idbillet`, `idtbillet`, `idmatch`, `quantite`, `libellebillet`) VALUES (NULL, '2', '1', '5', 'Match1Promo');
-INSERT INTO `billet` (`idbillet`, `idtbillet`, `idmatch`, `quantite`, `libellebillet`) VALUES (NULL, '1', '1', '10', 'Match1 - licencié');
-INSERT INTO `billet` (`idbillet`, `idtbillet`, `idmatch`, `quantite`, `libellebillet`) VALUES (NULL, '2', '2', '6', 'MatchEfef-Promo');
+  -- création match simple
+  INSERT INTO `_match` (`idmatch`, `libelleMatch`, `dateMatch`, `coeffMatch`, `courtMatch`, `creneauMatch`, `typeMatch`, `tournoi`, `equipeA`, `equipeR1`, `equipeR2`, `joueurA1`, `joueurA2`, `joueurB1`, `joueurB2`, `inactif`, `estjoue`)
+  VALUES (NULL, 'Match1', '2020-07-24', '1.2', 'Central', '14h', 'simple', 'Open', '1', '1', '2', '1', null, '2', null, '0', '0');
 
 
-INSERT INTO `ventes` (`idventes`, `montanttotal`, `paniermoyen`, `nbventes`, `mois`)
-VALUES ('1', '0', '0', '0', 'Janvier');
+  INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '50', 'promo');
+  INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'licencie');
+  INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'grandPublic');
+  INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'journéeSolidarité');
+  INSERT INTO `tbillet` (`idtbillet`, `prixtbillet`, `libelletbillet`) VALUES (NULL, '40', 'theBigMatch');
+
+  INSERT INTO `emplacement` (`idemplacement`, `libelleemplacement`, `coeffemplacement`) VALUES (NULL, 'Tribune', '0.95');
+  INSERT INTO `promo` (`idpromo`, `libellepromo`, `coeffpromo`, `idtbillet`) VALUES (NULL, 'Etudiant', '0.9', '2');
+  INSERT INTO `promo` (`idpromo`, `libellepromo`, `coeffpromo`, `idtbillet`) VALUES (NULL, 'Chomeur', '0.8', '4');
+  INSERT INTO `licence` (`idlicence`, `numlicencie`) VALUES (NULL, '10');
+  INSERT INTO `billet` (`idbillet`, `idtbillet`, `idmatch`, `quantite`, `libellebillet`) VALUES (NULL, '2', '1', '5', 'Match1Promo');
+  INSERT INTO `billet` (`idbillet`, `idtbillet`, `idmatch`, `quantite`, `libellebillet`) VALUES (NULL, '1', '1', '10', 'Match1 - licencié');
+  INSERT INTO `billet` (`idbillet`, `idtbillet`, `idmatch`, `quantite`, `libellebillet`) VALUES (NULL, '2', '2', '6', 'MatchEfef-Promo');
+
+
+  INSERT INTO `ventes` (`idventes`, `montanttotal`, `paniermoyen`, `nbventes`, `mois`)
+  VALUES ('1', '0', '0', '0', 'Janvier');
 
 -- procédure 1 - met à jour le champ ESTLICENCIE si le client à passé une
 -- commande d'un billet licencié
