@@ -37,6 +37,8 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
     else{
         echo '<a href = "seconnecter.php"><button class="bouton" type="button"> Se Connecter </button></a>';
         echo '<a href = "sinscrire.php"><button class="bouton" type="button"> S&apos;Inscrire </button></a>';
+        echo '<body onLoad="alert(\'Vous devez vous connecter pour poursuivre votre commande (ou vous inscrire en cliquant sur le bouton)\')">';
+        echo '<meta http-equiv="refresh" content="0;URL=seconnecter.php">';
     }
     ?>
 
