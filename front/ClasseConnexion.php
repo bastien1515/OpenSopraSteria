@@ -14,9 +14,10 @@ class Connection
 
         try {
           $this->_nomServeur   = "localhost"; // on est sur le serveur donc il sait ou il est
-          $this->_utilisateur     = "root"; // utilisateur par defaut
-          $this->_mdp = "";
-          $this->_nomBD   = "tennis";
+          $this->_utilisateur     = "id12571223_opentennis"; // utilisateur par defaut
+          $this->_mdp = "]wY36qla}dNpf]p>";
+          $this->_nomBD   = "id12571223_tennisfinal";
+
             $this->_bdd      = new PDO('mysql:host=' . $this->_nomServeur . ';dbname=' . $this->_nomBD . ';charset=utf8', $this->_utilisateur, $this->_mdp);
             return $this->_bdd;
         }

@@ -8,7 +8,7 @@ $maConnexionBD = new Connection();?>
     <head>
         <title>OPEN SOPRA STERIA | Admin</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/design.css">
+        <link rel="stylesheet" href="../css/admin.css">
     </head>
 
     <body>

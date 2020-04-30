@@ -154,8 +154,7 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
                         </a>
               </div>
 <!-- Fin du choix-->
-
-
+<footer>
 <!--bas de page-->
   <div class = "bas">
       <ul id = "bottom1">
@@ -169,3 +168,6 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
       </ul>
   </div>
 <!--fin bas de page-->
+</footer>
+</body>
+</html>

@@ -92,7 +92,7 @@
           </div>
           <!--Fin du Formulaire-->
 
-
+<footer>
           <!--bas de page-->
               <div class = "bas">
                 <ul id = "bottom1">
@@ -107,5 +107,6 @@
               </div>
           <!--fin bas de page-->
 
+</footer>
 </body>
         </html>

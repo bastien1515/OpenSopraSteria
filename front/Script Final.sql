@@ -244,8 +244,8 @@ BEGIN
 END |
 
 
---Trigger 2 - Supprime un match quand la quantité de billet tombe à zero
---pour ne pas proposer des billets sold out à la vente.
+-- Trigger 2 - Supprime un match quand la quantité de billet tombe à zero
+-- pour ne pas proposer des billets sold out à la vente.
 -- + Desactiver un match dont la date est passé.
 
 
@@ -259,6 +259,9 @@ BEGIN
      UPDATE _match SET inactif= 1 WHERE dateMatch < CURRENT_TIMESTAMP;
 
 END |
+
+
+-- Trigger 3 - controle date lors de l'ajout match
 
 DELIMITER |
 CREATE TRIGGER ajout_match before INSERT ON _match
@@ -378,7 +381,7 @@ END;
 -- comptabilise le nombre de billets restants pour un match donné
 
 DELIMITER |
-CREATE PROCEDURE recap_ventes3()
+CREATE PROCEDURE recap_ventes()
 BEGIN
 
 	select sum(commande.montant) as ventes_totales from commande INNER JOIN tbillet on tbillet.idtbillet=commande.idtbillet

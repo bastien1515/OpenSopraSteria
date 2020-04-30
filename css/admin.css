@@ -1,24 +1,11 @@
 
 /*Police du site*/
 @import url(https://fonts.googleapis.com/css?family=Muli);
-
-html, body {
-	height: 100%;
-	margin: 0; padding: 0;
-}
+  
 
 body {
-  display : table;
-  width: 100%;
   background-color: #212121;
 }
-
-footer {
-      display : table-row;
-      width : 100%;
-  }
-
-* {-moz-box-sizing: border-box; box-sizing: border-box;}
 
 /*Design de la barre de menu */
 .menu {
@@ -273,6 +260,7 @@ position: relative;
 top : 95%;
 height : 100px;
 font-family: 'Muli', Arial, sans-serif;
+width : 100%;
 }
 
 #bottom1 a:hover{
@@ -364,7 +352,7 @@ input[type="submit"]{
   transition: all 0.5s;
   margin: 0px;
   */
-}
+
 
 /*Fin Page Se connecter et s'inscrire*/
 
@@ -451,3 +439,4 @@ border-top-style: double;
     color: whitesmoke;
     font-size: 12px;
   }
+
