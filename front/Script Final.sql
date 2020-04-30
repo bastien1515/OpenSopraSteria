@@ -257,7 +257,7 @@ BEGIN
      SET id =(SELECT idmatch from _match WHERE EXISTS (SELECT idmatch FROM billet WHERE quantite=0));
      UPDATE _match SET inactif = 1 WHERE idmatch= id;
      UPDATE _match SET inactif= 1 WHERE dateMatch < CURRENT_TIMESTAMP;
-
+     
 END |
 
 /*

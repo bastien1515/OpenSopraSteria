@@ -78,7 +78,7 @@
                    $mail = $_REQUEST['mail'];
                    $pass1 = $_REQUEST['pass1'];
                    $pass2 = $_REQUEST['pass2'];
-                  var_dump($_REQUEST);
+                  
                    if ($pass1!=$pass2 ){
                         echo '  <body onLoad="alert(\'Erreur. Les deux mots de passe saisis sont différents.\')">   ';
                    }
