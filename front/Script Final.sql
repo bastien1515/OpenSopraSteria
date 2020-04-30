@@ -260,6 +260,17 @@ BEGIN
 
 END |
 
+DELIMITER |
+CREATE TRIGGER ajout_match before INSERT ON _match
+FOR EACH ROW
+BEGIN
+ IF new.dateMatch < CURRENT_TIMESTAMP
+ THEN
+ 	SIGNAL SQLSTATE '45001'
+    SET MESSAGE_TEXT = "Vous ne pouvez pas ajouter de match à une date antérieure";
+ END IF;
+END |
+
 /*
 DELIMITER | -- marche pas : empeche la quantite de passer à zéro
 CREATE TRIGGER suppr_match AFTER UPDATE
@@ -367,26 +378,20 @@ END;
 -- comptabilise le nombre de billets restants pour un match donné
 
 DELIMITER |
-CREATE PROCEDURE billets_restants(IN idm INT, OUT qtotale INT)
+CREATE PROCEDURE recap_ventes3()
 BEGIN
-  DECLARE quantite INT;
-  DECLARE qtotale INT DEFAULT 0;
-  DECLARE done INT DEFAULT FALSE;
-  DECLARE curseur CURSOR
-  FOR select billet.quantite from billet where billet.idmatch=idm;
-  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 
-  OPEN curseur;
-  myloop: LOOP
-  	FETCH curseur INTO quantite;
-    IF done THEN
-    	LEAVE myloop;
-    END IF;
-    SET qtotale = qtotale +quantite;
-  END LOOP;
-  CLOSE curseur;
-	select qtotale;
-END;
+	select sum(commande.montant) as ventes_totales from commande INNER JOIN tbillet on tbillet.idtbillet=commande.idtbillet
+    INNER JOIN billet on billet.idtbillet=tbillet.idtbillet
+    INNER JOIN _match on _match.idmatch=billet.idmatch;
+
+    select sum(commande.montant) Ventes_match,_match.libelleMatch as intitule_match from commande
+    INNER JOIN tbillet on tbillet.idtbillet=commande.idtbillet
+    INNER JOIN billet on billet.idtbillet=tbillet.idtbillet
+    INNER JOIN _match on _match.idmatch=billet.idmatch
+    group by _match.idmatch order by sum(commande.montant) DESC;
+
+END |
 
 -- pour appeler la procédure:
 --  CALL billets_restants(4,@qtotale);
@@ -404,6 +409,10 @@ create or  replace VIEW Matchs
 SELECT `idmatch`,`dateMatch`,`libelleMatch`,`creneauMatch`
 FROM `_match`
 
+Create view commandebillet
+AS SELECT idtbillet, COUNT(idcommande) as totalcommande
+FROM commande
+GROUP BY idtbillet
 
 -- gestion des Index
 
