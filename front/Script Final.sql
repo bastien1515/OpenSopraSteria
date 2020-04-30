@@ -156,7 +156,7 @@ CREATE TABLE `ramasseurs` (
  `equipeRamasseurs` TINYINT NOT NULL AUTO_INCREMENT , `libelleEquipeR` VARCHAR(50) NOT NULL , PRIMARY KEY (`equipeRamasseurs`)
  ) ENGINE = InnoDB;
 
- CREATE TABLE `tennis`.`joueur` (
+ CREATE TABLE `joueur` (
  `idjoueur` SMALLINT NOT NULL AUTO_INCREMENT ,
  `nomjoueur` VARCHAR(30) NOT NULL ,
  `prenomjoueur` VARCHAR(30) NULL ,
@@ -166,7 +166,7 @@ CREATE TABLE `ramasseurs` (
   PRIMARY KEY (`idjoueur`)
  ) ENGINE = InnoDB;
 
- CREATE TABLE `tennis`.`score` (
+ CREATE TABLE `score` (
  `idmatch` INT NOT NULL ,
  `idjoueur` SMALLINT NOT NULL ,
  `numeroset` TINYINT NOT NULL ,
@@ -257,7 +257,7 @@ BEGIN
      SET id =(SELECT idmatch from _match WHERE EXISTS (SELECT idmatch FROM billet WHERE quantite=0));
      UPDATE _match SET inactif = 1 WHERE idmatch= id;
      UPDATE _match SET inactif= 1 WHERE dateMatch < CURRENT_TIMESTAMP;
-     
+
 END |
 
 /*
@@ -295,10 +295,10 @@ AS
 
 
 --  Insertion des données de test
-  INSERT INTO `equipea` (`equipeArbitre`, `libelleEquipeA`) VALUES (NULL, 'Equipe 1');
+  INSERT INTO `equipeA` (`equipeArbitre`, `libelleEquipeA`) VALUES (NULL, 'Equipe 1');
 
-  INSERT INTO `equiper` (`equipeRamasseurs`, `libelleEquipeR`) VALUES (NULL, 'brascassés');
-  INSERT INTO `equiper` (`equipeRamasseurs`, `libelleEquipeR`) VALUES (NULL, 'etudiants');
+  INSERT INTO `equipeR` (`equipeRamasseurs`, `libelleEquipeR`) VALUES (NULL, 'brascassés');
+  INSERT INTO `equipeR` (`equipeRamasseurs`, `libelleEquipeR`) VALUES (NULL, 'etudiants');
 
   INSERT INTO `ramasseurs` (`idRamasseur`, `nomRamasseur`, `prenomRamasseur`, `equipeRamasseurs`) VALUES (NULL, 'Magic', 'Jhonson', '1');
   INSERT INTO `ramasseurs` (`idRamasseur`, `nomRamasseur`, `prenomRamasseur`, `equipeRamasseurs`) VALUES (NULL, 'Kobe', 'Bryan', '1');

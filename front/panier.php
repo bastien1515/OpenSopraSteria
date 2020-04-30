@@ -113,24 +113,34 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
 <output type = 'text' name = "billet">  </output> <br/>
 
      <p>
-        <input type="submit" value="Valider" name="co">
+        <input type="submit" value="Valider" name="fin">
     </p>
 
 </form>
 
  <?php
-     $montant = $_SESSION['prixtotal'];
-     $idclient= $_SESSION['idclient'];
-     $idemplacement=$_SESSION['idemplacement'];
-     //$idpromo=$_SESSION['idpromo'];
-     $idtbillet=$maConnexionBD->getidtbillet($_SESSION['libelletbillet']);
 
-     $maConnexionBD->ajoutCommande($idclient,$idemplacement,$idtbillet,$montant);
+      if (isset($_POST['fin'])){
+
+         $montant = $_SESSION['prixtotal'];
+         $idclient= $_SESSION['idclient'];
+         $idemplacement=$_SESSION['idemplacement'];
+         //$idpromo=$_SESSION['idpromo'];
+         $idtbillet=$maConnexionBD->getidtbillet($_SESSION['libelletbillet']);
+
+         $maConnexionBD->ajoutCommande($idclient,$idemplacement,$idtbillet,$montant);
 
 
-     $idbillet=$maConnexionBD->getBilletByMatch($_SESSION['idmatchcommande']);
+         $idbillet=$maConnexionBD->getBilletByMatch($_SESSION['idmatchcommande']);
 
-     $maConnexionBD->quantitemoins($idbillet);
+         $maConnexionBD->quantitemoins($idbillet);
+
+          echo ' <body onLoad="alert(\'Commande validée, vous allez etre redirigé vers la page de paiement\')">   ';
+           echo '<meta http-equiv="refresh" content="0;URL=accueil.php">';
+
+
+      }
+
 
      // récuperer idbillet
  ?>
@@ -145,9 +155,15 @@ $maConnexionBD = new Connection(); // nouvelle connection BD
  $_SESSION['creneaumatch']= $maConnexionBD -> getcreneaumatch($_SESSION['idmatchcommande']);?>
 
 
+<form action = "billet.php" target="_blank" method="post">
+
  <a href ="billet.php" >
    <input type='submit' value="Imprimer le billet" name="pdf">
+
   </a>
+
+</form>
+
 
 </div>
   <!-- Fin page-->
